@@ -21,7 +21,7 @@ public class ConfiguracionFB {
 
 		try {
 
-			serviceAccount = new FileInputStream("./netview-3cece-firebase-adminsdk-abiwq-0cbd343d40.json");
+			serviceAccount = new FileInputStream(""); //FALTA AGREGAR RUTA
 
 			FirebaseOptions options = FirebaseOptions.builder()
 

@@ -64,7 +64,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
-		<dependency>
+		<dependency>pk
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-streams</artifactId>
 		</dependency>
@@ -124,6 +124,13 @@
             <artifactId>firebase-admin</artifactId>
             <version>9.0.0</version>
         </dependency>
+        
+        <dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+        
 	</dependencies>
 
 	<build>
@@ -138,7 +145,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-				</configuration>
+				</configuration>web
 			</plugin>
 		</plugins>
 	</build>

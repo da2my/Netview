@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.dmj.Netview.modelo.Role;
 import com.dmj.Netview.modelo.Usuario;
+import com.dmj.Netview.repositorios.UsuarioRepositorio;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;

@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.dmj.Netview.dto.UsuarioRegistroDTO;
 import com.dmj.Netview.modelo.Role;
 import com.dmj.Netview.modelo.Usuario;
 import com.dmj.Netview.repositorios.UsuarioRepositorio;
@@ -36,23 +37,23 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 
 
 	@Override
-	public ApiFuture<DocumentReference> guardar(Usuario registrationUser) throws Exception {
+	public ApiFuture<DocumentReference> guardar(UsuarioRegistroDTO registrationDto) throws Exception {
 		
 		Role roleUsuario = new Role();
 		
 		//Creacion identificacion de roles de usuario (inicio nombre con n@tvi@w -> admin)
-		String[] adminRol = registrationUser.getNombre().split(" "); 
+		String[] adminRol = registrationDto.getNombre().split(" "); 
 		
 		if(adminRol[0].equals("n@tvi@w")) {
 			roleUsuario.setNombre("ROLE_ADMIN");
-			registrationUser.setNombre(adminRol[1]);
+			registrationDto.setNombre(adminRol[1]);
 		}else {
 			roleUsuario.setNombre("ROLE_USER");
 		}
 		
 		
-		Usuario user = new Usuario(registrationUser.getNombre(), registrationUser.getApellidos(),
-				registrationUser.getEmail(), codificarContrasena.encode(registrationUser.getContrasena()),
+		Usuario user = new Usuario(registrationDto.getNombre(), registrationDto.getApellido(),
+		registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()),
 				Arrays.asList(roleUsuario));
 		
 		

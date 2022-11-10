@@ -19,5 +19,12 @@ public class UsuarioLoginControlador {
 	public String welcome() {
 		return "redirect:/app/login";// http://localhost:7000/app/login
 	}
+	
+	
+	//Ruta ejemplo para acceder al principal NetView
+	@GetMapping("/app/login/NetView")
+	public String index() {
+		return "NetView";
+	}
 
 }

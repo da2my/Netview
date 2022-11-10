@@ -17,6 +17,7 @@ public class Usuario {
 	
 	//No esta importado el DATE tenemos 4 imports(revisar cual es el correcto)
 	//private Date fechaAlta;//para controlar pasarela de pagos ¿?
+	//Crear boolean para controlar el pago
 	
 	
 	private List<Role> roles;

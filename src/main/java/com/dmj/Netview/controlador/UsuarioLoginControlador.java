@@ -27,4 +27,9 @@ public class UsuarioLoginControlador {
 		return "NetView";
 	}
 
+	@GetMapping("/app/login/NetView/sala")
+	public String sala() {
+		return "NetView_Sala";
+	}
+	
 }

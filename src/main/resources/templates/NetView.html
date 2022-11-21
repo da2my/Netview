@@ -165,10 +165,53 @@
 					th:src="@{/images/IMG_3391.JPG}" width="30%" />
 				</a>
 
+				<div class="row">
+
+					<!-- ./col -->
+
+					<!--añadir video-->
+					<div class="col-lg-4">
+
+						<div class="panel panel-default panel-producto">
+
+							<iframe src="http://placehold.it/350x260"
+								class="img-responsive center-block" alt="Image"
+								style="height: 300px; width: 450px;"
+								th:src="@{https://storage.googleapis.com/netview-3cece.appspot.com/Calico.Electronico.1x04.-.Los.Ni%C3%B1os.Mutantes.de.San.Ildefonso.mp4}">
+
+							</iframe>
+
+						</div>
+
+					</div>
+					<!--/.añadir video-->
+
+				</div>
+				<div class="row">
+
+					<div class="col-lg-4">
+
+						<video th:src="@{/videos/videoCorto.mp4}" width="720px"
+							height="480px" controls preload="none">
+						</video>
+					</div>
+				</div>
 			</section>
 			<!-- /.contenido -->
 		</div>
 		<!-- /.envoltura de contenido -->
+
+		<div class="content-wrapper">
+
+			<section class="content">
+
+				<video th:src="@{/video/videoCorto}" width="720px" height="480px"
+					controls preload="none">
+				</video>
+
+			</section>
+			<!-- /.contenido -->
+		</div>
 
 		<!-- Pie de página principal -->
 		<footer class="main-footer">

@@ -54,7 +54,7 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 		
 		Usuario user = new Usuario(registrationDto.getNombre(), registrationDto.getApellidos(),
 		registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()),
-				Arrays.asList(roleUsuario));
+				Arrays.asList(roleUsuario), false );
 		
 		
 		

@@ -3,48 +3,52 @@ package com.dmj.Netview.modelo;
 import java.util.List;
 
 public class Usuario {
-		
-	//el id se autogenera en firebase, no creamos un atributo para ello
+
+	// el id se autogenera en firebase, no creamos un atributo para ello
 
 	private String nombre;
 
 	private String apellidos;
-	
+
 	private String email;
-	
+
 	private String contrasena;
-	
-	
-	//No esta importado el DATE tenemos 4 imports(revisar cual es el correcto)
-	//private Date fechaAlta;//para controlar pasarela de pagos ¿?
-	//Crear boolean para controlar el pago
-	
-	
+
+	private boolean pago;
+
 	private List<Role> roles;
-	
-	
-	//constructor por defecto
+
+	// constructor por defecto
 	public Usuario() {
-		
+
 	}
-	
-	//constructor
-	public Usuario(String nombre, String apellidos, String email, String contrasena, List<Role> roles) {
+
+	// constructor
+	public Usuario(String nombre, String apellidos, String email, String contrasena, List<Role> roles, boolean pago) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.contrasena = contrasena;
 		this.roles = roles;
+		this.pago = pago;
 	}
 
-	//Getters Setters
+	// Getters Setters
 	public String getNombre() {
 		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public boolean getPago() {
+		return pago;
+	}
+
+	public void setPago(boolean pago) {
+		this.pago = pago;
 	}
 
 	public String getApellidos() {

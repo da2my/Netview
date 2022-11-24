@@ -57,18 +57,11 @@
 							<a th:href="@{/app/login/NetView/pasarela}"  class="suscribete">SUSCRIBETE</a>
 						</li> 
 						<li class="dropdown user user-menu">
-<<<<<<< HEAD
 							<!-- Botón de alternancia del menú --> <a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">
 								<!-- The user image in the navbar-->
 								<img th:src="@{/configMenu/avatar3.png}" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-=======
-							<!-- Botón de alternancia del menú --> <a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
-								<img th:src="@{/configMenu/avatar3.png}" class="user-image"
-								alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
->>>>>>> b62048e5b8092784b3890d7a6831afbcc97ee1b8
 								<span class="hidden-xs" sec:authentication="principal.username">
 									@{usuario.nombre}</span>
 							</a>
@@ -79,15 +72,10 @@
 
 									<p>
 										Bienvenido - <span sec:authentication="principal.username">
-<<<<<<< HEAD
 											Usuario</span> <small>Usted es,@{usuario.role.nombreRole}
 										</small>
 									</p>
 								</li>
-=======
-											Usuario</span> <small>Usted es,@{usuario.role.nombreRole} </small>
-									</p></li>
->>>>>>> b62048e5b8092784b3890d7a6831afbcc97ee1b8
 								<!-- Menu pie-->
 								<li class="user-footer">
 									<div class="pull-right">
@@ -187,7 +175,6 @@
 
 						<div class="panel panel-default panel-producto">
 
-<<<<<<< HEAD
 							<div class="panel-body">
 
 								<video controls width="350" height="260">
@@ -204,20 +191,10 @@
 								<a href="#" class="small-box-footer">Añadir a favoritos </i></a>
 
 							</div>
-=======
-							<iframe src="http://placehold.it/350x260"
-								class="img-responsive center-block" alt="Image"
-								style="height: 300px; width: 450px;"
-								th:src="@{https://storage.googleapis.com/netview-3cece.appspot.com/Calico.Electronico.1x04.-.Los.Ni%C3%B1os.Mutantes.de.San.Ildefonso.mp4}">
-
-							</iframe>
-
->>>>>>> b62048e5b8092784b3890d7a6831afbcc97ee1b8
 						</div>
 
 					</div>
 					<!--/.añadir video-->
-<<<<<<< HEAD
 <!--
 
 					<video controls width="640" height="480">
@@ -234,18 +211,6 @@
 </div>
 
 
-=======
-
-				</div>
-				<div class="row">
-
-					<div class="col-lg-4">
-
-						<video th:src="@{/videos/videoCorto.mp4}" width="720px"
-							height="480px" controls preload="none">
-						</video>
-					</div>
->>>>>>> b62048e5b8092784b3890d7a6831afbcc97ee1b8
 				</div>
 			</section>
 			<!-- /.contenido -->

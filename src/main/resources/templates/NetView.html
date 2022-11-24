@@ -58,9 +58,10 @@
 						</li> 
 						<li class="dropdown user user-menu">
 							<!-- Botón de alternancia del menú --> <a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"> <!-- The user image in the navbar-->
-								<img th:src="@{/configMenu/avatar3.png}" class="user-image"
-								alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
+								data-toggle="dropdown">
+								<!-- The user image in the navbar-->
+								<img th:src="@{/configMenu/avatar3.png}" class="user-image" alt="User Image">
+								<!-- hidden-xs hides the username on small devices so only the image appears. -->
 								<span class="hidden-xs" sec:authentication="principal.username">
 									@{usuario.nombre}</span>
 							</a>
@@ -73,7 +74,8 @@
 										Bienvenido - <span sec:authentication="principal.username">
 											Usuario</span> <small>Usted es,@{usuario.role.nombreRole}
 										</small>
-									</p></li>
+									</p>
+								</li>
 								<!-- Menu pie-->
 								<li class="user-footer">
 									<div class="pull-right">
@@ -194,15 +196,20 @@
 
 					</div>
 					<!--/.añadir video-->
-					
-					
-					    <video controls width="640" height="480">
+<!--
 
-    							<source src="file:///C:\VideosNetView\Calico.Electronico.1x04.-.Los.Niños.Mutantes.de.San.Ildefonso.mp4"/>
-  
-						</video>
-					
-				
+					<video controls width="640" height="480">
+
+						<source
+							src="file:///C:\VideosNetView\Calico.Electronico.1x04.-.Los.Niños.Mutantes.de.San.Ildefonso.mp4" />
+
+					</video>
+
+
+<div id="image_url_1"></div> ESTO ES LO DE LA API
+
+-->
+</div>
 
 
 				</div>

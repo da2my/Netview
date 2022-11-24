@@ -27,11 +27,4 @@ public class UsuarioLoginControlador {
 		return "NetView";
 	}
 
-
-	//Ruta ejemplo para acceder a la pasarela 
-	@GetMapping("/app/login/NetView/pasarela")
-	public String pasarela() {
-		return "pasarela";
-	}
-
 }

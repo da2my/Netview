@@ -21,17 +21,8 @@ public class UsuarioLoginControlador {
 	}
 	
 	
-	//Ruta ejemplo para acceder al principal NetView
-	@GetMapping("/app/login/NetView")
-	public String index() {
-		return "NetView";
-	}
 
 
-	//Ruta ejemplo para acceder a la pasarela 
-	@GetMapping("/app/login/NetView/pasarela")
-	public String pasarela() {
-		return "pasarela";
-	}
+	
 
 }

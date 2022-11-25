@@ -14,23 +14,20 @@ import com.dmj.Netview.modelo.Video;
 import com.dmj.Netview.repositorios.UsuarioRepositorio;
 import com.dmj.Netview.servicios.VideoServicio;
 
-
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	private VideoServicio videoServicio;
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
-	
-	
+
 	private Usuario usuario;
-	
-	
-	//CARTELERA
+
+	// CARTELERA
 	@ModelAttribute("cartelera")
-	public List<Video> videosCartelera(){
+	public List<Video> videosCartelera() {
 		return videoServicio.findAll();
 	}
 
@@ -39,9 +36,8 @@ public class MainController {
 		model.addAttribute("cartelera");
 		return "NetView";
 	}
-	
-	
-	//FAVORITOS
+
+	// FAVORITOS
 	@ModelAttribute("favoritos")
 	public List<Video> misFavoritos() {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -54,9 +50,8 @@ public class MainController {
 		model.addAttribute("favoritos", videoServicio.favoritosDeUsuario(usuario));
 		return "NetViewFav";
 	}
-	
-	
-	//AGREGAR A FAVORITOS
+
+	// AGREGAR A FAVORITOS
 	@GetMapping("/app/login/NetView/add/{addFav}")
 	public String addFavorito(Model model, @PathVariable String addFav) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -65,7 +60,7 @@ public class MainController {
 		usuarioRepositorio.updateFavoritos(usuario);
 		return "NetView";
 	}
-	
+
 	@GetMapping("/app/login/NetView/del/{delFav}")
 	public String borrarFavorito(Model model, @PathVariable String delFav) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -73,8 +68,10 @@ public class MainController {
 		usuarioRepositorio.deleteFavorito(usuario, delFav);
 		return "NetView";
 	}
-	
-	
-	
 
+	// Ruta ejemplo para acceder a la pasarela
+	@GetMapping("/app/login/NetView/pasarela")
+	public String pasarela() {
+		return "pasarela";
+	}
 }

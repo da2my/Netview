@@ -72,7 +72,7 @@
 
 									<p>
 										Bienvenido - <span sec:authentication="principal.username">
-											Usuario</span> <small>Usted es,@{usuario.role.nombreRole}
+											Usuario</span> <small sec:authentication="principal.Authorities">
 										</small>
 									</p>
 								</li>
@@ -126,10 +126,10 @@
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">INICIO</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="#"><i class="fa fa-link"></i>
+					<li class="active"><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i>
 							<span>Cartelera</span></a></li>
 
-					<li class="treeview"><a href="#"><i class="glyphicon glyphicon-th-large"></i> 
+					<li class="treeview"><a th:href="@{/app/login/NetView/favs}"><i class="glyphicon glyphicon-th-large"></i> 
 						<span>Tus favoritos</span></a></li>
 
 					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> 
@@ -159,65 +159,63 @@
 
 		<!-- Envoltura de contenido. Contiene el contenido de la página -->
 		<div class="content-wrapper">
-
+			<!-- /.contenido -->
 			<section class="content">
-
-				<a align="center " th:href="@{/app/login/NetView/sala}"> <img
-					th:src="@{/images/IMG_3391.JPG}" width="30%" />
-				</a>
-
+				<!-- Small boxes (Stat box) -->
 				<div class="row">
+			
+					<div class="col-sm-3" th:each="video : ${cartelera}">
 
-					<!-- ./col -->
-
-					<!--añadir video-->
-					<div class="col-lg-4">
-
-						<div class="panel panel-default panel-producto">
-							<a th:href="@{/app/login/NetView}" style="display: none"></a>
-
+						<div class="col-item">
+							<div class="row">
+							
+								<div class="fav-btn">
+								<a th:href="@{/app/login/NetView/add/{addFav}(addFav=${video.tituloVideo})}">
+									<span class="favme glyphicon glyphicon-heart">
+									</a>
+									</span>
+								</div>
+								
+							</div>
+							
 							<div class="panel-body">
-							
-							<video controls width="350" height="260">
-								<source th:src="${#strings.isEmpty(video)} ? 'http://placehold.it/350x260' : ${video}">
-							</video>
-							
-								<iframe src="http://placehold.it/350x260"
-									class="img-responsive center-block" alt="Image"
-									style="height: 300px; width: 450px;"
-									th:src="${#strings.isEmpty(video)} ? 'http://placehold.it/350x260' : ${video}">
+							<!--/.añadir video-->
 
-								</iframe>
-	
-								<a href="#" class="small-box-footer">Añadir a favoritos </i></a>
+								<video controls width="640" height="480">
+									<source	th:src="${#strings.isEmpty(video.urlVideo)} ? 'http://placehold.it/350x260' : ${video.urlVideo}" />
+								</video>
+									
+								<p th:text="${video.tituloVideo}"></p>
 								
 							</div>
 						</div>
-
 					</div>
-					<!--/.añadir video-->
-<!--
+				</div>
 
-					<video controls width="640" height="480">
+			
 
-						<source
-							src="file:///C:\VideosNetView\Calico.Electronico.1x04.-.Los.Niños.Mutantes.de.San.Ildefonso.mp4" />
 
-					</video>
-
+<!-- 
 
 <div id="image_url_1"></div> ESTO ES LO DE LA API
 
 -->
-</div>
 
 
-				</div>
+
 			</section>
 			<!-- /.contenido -->
 		</div>
 		<!-- /.envoltura de contenido -->
-
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ESTA ES LA PRUEBA DEL VIDEO STREAMING-SERVICE -->
 		<div class="content-wrapper">
 
 			<section class="content">
@@ -227,8 +225,13 @@
 				</video>
 
 			</section>
-			<!-- /.contenido -->
 		</div>
+		
+		
+		
+		
+		
+		
 
 		<!-- Pie de página principal -->
 		<footer class="main-footer">

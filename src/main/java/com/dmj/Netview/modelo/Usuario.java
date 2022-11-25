@@ -2,6 +2,8 @@ package com.dmj.Netview.modelo;
 
 import java.util.List;
 
+
+
 public class Usuario {
 
 	// el id se autogenera en firebase, no creamos un atributo para ello
@@ -17,6 +19,8 @@ public class Usuario {
 	private boolean pago;
 
 	private List<Role> roles;
+	
+	private List<Video> favoritos;
 
 	// constructor por defecto
 	public Usuario() {
@@ -24,14 +28,16 @@ public class Usuario {
 	}
 
 	// constructor
-	public Usuario(String nombre, String apellidos, String email, String contrasena, List<Role> roles, boolean pago) {
+	public Usuario(String nombre, String apellidos, String email, String contrasena, boolean pago, List<Role> roles,
+			List<Video> favoritos) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.contrasena = contrasena;
-		this.roles = roles;
 		this.pago = pago;
+		this.roles = roles;
+		this.favoritos = favoritos;
 	}
 
 	// Getters Setters
@@ -81,6 +87,19 @@ public class Usuario {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public List<Video> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(List<Video> favoritos) {
+		this.favoritos = favoritos;
+	}
+	
+	//agregar a favoritos
+	public void addVideoFavorito(Video v) {
+		this.favoritos.add(v);
 	}
 
 }

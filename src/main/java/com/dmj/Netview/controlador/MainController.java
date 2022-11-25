@@ -9,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import com.dmj.Netview.modelo.Usuario;
+import com.dmj.Netview.modelo.Video;
+import com.dmj.Netview.repositorios.UsuarioRepositorio;
+import com.dmj.Netview.servicios.VideoServicio;
 
-import com.logRegFireBase.proyectoLogRegFireBase.modelo.Usuario;
-import com.logRegFireBase.proyectoLogRegFireBase.modelo.Video;
-import com.logRegFireBase.proyectoLogRegFireBase.repositorios.UsuarioRepositorio;
-import com.logRegFireBase.proyectoLogRegFireBase.servicios.VideoServicio;
 
 @Controller
 public class MainController {

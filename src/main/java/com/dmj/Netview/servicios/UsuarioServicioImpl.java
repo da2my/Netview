@@ -13,20 +13,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.dmj.Netview.dto.UsuarioRegistroDTO;
 import com.dmj.Netview.modelo.Role;
 import com.dmj.Netview.modelo.Usuario;
+import com.dmj.Netview.modelo.Video;
 import com.dmj.Netview.repositorios.UsuarioRepositorio;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
+
 
 @Service
 public class UsuarioServicioImpl implements UsuarioRepositorio{
+	
     @Autowired
 	private Firestore database;
 
@@ -37,7 +39,7 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 
 
 	@Override
-	public ApiFuture<DocumentReference> guardar(UsuarioRegistroDTO registrationDto) throws Exception {
+	public ApiFuture<WriteResult> guardar(UsuarioRegistroDTO registrationDto) throws Exception {
 		
 		Role roleUsuario = new Role();
 		
@@ -53,15 +55,11 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 		
 		
 		Usuario user = new Usuario(registrationDto.getNombre(), registrationDto.getApellidos(),
-		registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()),
-				Arrays.asList(roleUsuario), false );
-		
-		
-		
+		registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()), false,
+				Arrays.asList(roleUsuario), Arrays.asList(new Video("","")));
 
-
-		return database.collection("Usuarios").add(user);
-
+		
+		return database.collection("Usuarios").document(user.getEmail()).set(user);
 
 	}
 
@@ -79,8 +77,7 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 			if (user == null) {
 				throw new UsernameNotFoundException("Nombre o contraseña incorrecta.");
 			}
-			
-			
+
 			
 			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getContrasena(),
 					mapRolesToAuthorities(user.getRoles()));
@@ -101,5 +98,55 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
+	}
+
+	@Override
+	public Usuario buscarPorEmail(String email) {
+				
+		try {
+			
+			ApiFuture<QuerySnapshot> future = database.collection("Usuarios").whereEqualTo("email", email).get();
+			List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+			DocumentSnapshot doc = documents.get(0);
+			Usuario user = new Usuario();
+			user = doc.toObject(Usuario.class);
+
+			return user;
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UsernameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+
+	@Override
+	public void updateFavoritos(Usuario usuario) {
+		
+		if(usuario.getFavoritos().get(0).getTituloVideo().equals("")) {
+			database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", Arrays.asList(new Video(usuario.getFavoritos().get(1).getTituloVideo(), usuario.getFavoritos().get(1).getUrlVideo())));
+		}else {
+			database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", usuario.getFavoritos());
+		}
+
+	}
+
+	@Override
+	public void deleteFavorito(Usuario usuario, String tituloVideoFavUser) {
+		
+		List<Video> favUser = usuario.getFavoritos();
+		
+		favUser.removeIf(v->v.getTituloVideo().equals(tituloVideoFavUser));
+
+		database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", favUser);
+	
 	}
 }

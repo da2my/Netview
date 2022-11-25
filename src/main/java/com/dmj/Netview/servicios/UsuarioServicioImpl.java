@@ -43,23 +43,29 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 		
 		Role roleUsuario = new Role();
 		
-		//Creacion identificacion de roles de usuario (inicio nombre con n@tvi@w -> admin)
-		String[] adminRol = registrationDto.getNombre().split(" "); 
 		
-		if(adminRol[0].equals("n@tvi@w")) {
-			roleUsuario.setNombre("ROLE_ADMIN");
-			registrationDto.setNombre(adminRol[1]);
-		}else {
-			roleUsuario.setNombre("ROLE_USER");
+		if(!checkEmail(registrationDto.getEmail())){
+			
+			// Creacion identificacion de roles de usuario (inicio nombre con n@tvi@w name -> admin)
+			String[] adminRol = registrationDto.getNombre().split(" ");
+
+			if (adminRol[0].equals("n@tvi@w")) {
+				roleUsuario.setNombre("ROLE_ADMIN");
+				registrationDto.setNombre(adminRol[1]);
+			} else {
+				roleUsuario.setNombre("ROLE_USER");
+			}
+
+			Usuario user = new Usuario(registrationDto.getNombre(), registrationDto.getApellidos(),
+					registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()), false,
+					Arrays.asList(roleUsuario), Arrays.asList(new Video("","")));// debe de estar a false xq un user no puede pagar sin antes registrarse
+
+			return database.collection("Usuarios").document(user.getEmail()).set(user);
+						
+			
 		}
 		
-		
-		Usuario user = new Usuario(registrationDto.getNombre(), registrationDto.getApellidos(),
-		registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()), false,
-				Arrays.asList(roleUsuario), Arrays.asList(new Video("","")));
-
-		
-		return database.collection("Usuarios").document(user.getEmail()).set(user);
+		return null;
 
 	}
 
@@ -98,6 +104,29 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
+	}
+	
+	public boolean checkEmail(String email) {
+
+		try {
+
+			ApiFuture<QuerySnapshot> future = database.collection("Usuarios").whereEqualTo("email", email).get();
+			List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+			
+			if(!documents.isEmpty()) {
+				return true;
+			}
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+
 	}
 
 	@Override

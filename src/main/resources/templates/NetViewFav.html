@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NetView</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+<!-- Indicar al navegador que responda a la anchura de la pantalla (responsive) -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="../static/configMenu/bootstrap.min.css"
+	th:href="@{/configMenu/bootstrap.min.css}">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="../static/configMenu/font-awesome.min.css"
+	th:href="@{/configMenu/font-awesome.min.css}">
+<!-- Ionicons -->
+<link rel="stylesheet" href="../static/configMenu/ionicons.min.css"
+	th:href="@{/configMenu/ionicons.min.css}">
+<!-- Estilo del tema -->
+<link href="../static/configMenu/AdminLTE.min.css"
+	th:href="@{/configMenu/AdminLTE.min.css}" rel="stylesheet"
+	type="text/css" />
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+
+<!-- Se puede cambiar el skin, hacer cambio tambien en la etiqueta body -->
+<link rel="stylesheet" href="../static/configMenu/skin-black.min.css"
+	th:href="@{/configMenu/skin-black.min.css}">
+<!-- th:href="@{/configMenu/skin-blue.min.css}" -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Cabecera principal -->
+		<header class="main-header">
+			<a href="#" class="logo"> <!-- mini logo para barra lateral mini 50x50 pixeles -->
+				<span class="logo-mini"><b>N</b>V</span> <!-- logo para el estado normal y los dispositivos móviles -->
+				<span class="logo-lg"><b>NetView</b></span>
+			</a>
+
+			<!-- Barra de navegación de la cabecera -->
+			<nav class="navbar navbar-static-top" role="navigation">
+				<!-- Botón de alternancia de la barra lateral-->
+				<a href="#" class="sidebar-toggle" data-toggle="push-menu"
+					role="button"> <span class="sr-only">Toggle navigation</span>
+				</a>
+				<!-- Menú derecho de la barra de navegación -->
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<!-- Menú de la cuenta de usuario -->
+						<li class="dropdown user user-menu">
+							<!-- Botón de alternancia del menú --> <a href="#"
+							class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
+								<img th:src="@{/configMenu/avatar3.png}" class="user-image"
+								alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
+								<span class="hidden-xs" sec:authentication="principal.username">
+									@{usuario.nombre}</span>
+						</a>
+							<ul class="dropdown-menu">
+								<!-- La imagen del usuario en el menú -->
+								<li class="user-header"><img
+									th:src="@{/configMenu/avatar3.png}" class="img-circle"
+									alt="User Image">
+
+									<p>
+										Bienvenido - <span sec:authentication="principal.username">
+											Usuario</span><small sec:authentication="principal.Authorities">
+										</small>
+									</p></li>
+								<!-- Menu pie-->
+								<li class="user-footer">
+									<div class="pull-right">
+										<a th:href="@{/logout}" class="btn btn-default btn-flat">Cerrar
+											Session</a>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- Columna lateral izquierda. Contiene el logotipo y la barra lateral -->
+		<aside class="main-sidebar">
+
+
+			<section class="sidebar">
+
+				<!-- Panel de usuario de la barra lateral (opcional) -->
+				<div class="user-panel">
+					<div class="pull-left image">
+						<img th:src="@{/configMenu/avatar3.png}" class="img-circle"
+							alt="User Image">
+					</div>
+					<div class="pull-left info">
+						<p>
+							Bienvenid@, <span sec:authentication="principal.username">Usuario</span>
+						</p>
+						<!-- Estado -->
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					</div>
+				</div>
+
+				<!-- formulario de búsqueda (opcional) -->
+				<form action="#" method="get" class="sidebar-form">
+					<div class="input-group">
+						<input type="text" name="q" class="form-control"
+							placeholder="Buscar..."> <span class="input-group-btn">
+							<button type="submit" name="search" id="search-btn"
+								class="btn btn-flat">
+								<i class="fa fa-search"></i>
+							</button>
+						</span>
+					</div>
+				</form>
+				<!-- /.formulario de búsqueda -->
+
+				<!-- Menú de la barra lateral -->
+				<ul class="sidebar-menu" data-widget="tree">
+					<li class="header">INICIO</li>
+					<!-- Optionally, you can add icons to the links -->
+					<li class="active"><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i>
+							<span>Cartelera</span></a></li> 
+							
+							
+							<!-- th:href="@{/logout}" -->
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/app/login/NetView/favs}"><i
+							class="glyphicon glyphicon-th-large"></i> <span>Tus
+								favoritos</span></a></li> 
+								
+								
+					<li class="treeview"><a href="#"><i
+							class="fa fa-cart-arrow-down"></i> <span>Tus
+								reproducciones</span> <span class="pull-right-container"> <i
+								class="fa fa-angle-left pull-right"></i>
+						</span> </a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir
+									viendo</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Video anterior</a></li>
+						</ul></li>
+					<li class="treeview"><a href="#"><i
+							class="fa fa-area-chart"></i> <span>Reportes</span> <span
+							class="pull-right-container"> <i
+								class="fa fa-angle-left pull-right"></i>
+						</span> </a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fa fa-bar-chart"></i>Reportes
+									Videos</a></li>
+						</ul></li>
+				</ul>
+				<!-- /.Menú de la barra lateral -->
+			</section>
+			<!-- /.Barra lateral -->
+		</aside>
+
+		<!-- Envoltura de contenido. Contiene el contenido de la página -->
+		<div class="content-wrapper">
+
+			<section class="content">
+				<!-- Small boxes (Stat box) -->
+				<div class="row">
+
+					<!-- ./col -->
+
+
+
+					<!--añadir video-->
+	
+				<div class="col-sm-3" th:each="video : ${favoritos}">
+
+						<div class="col-item">
+							<div class="row">
+							
+								<div class="fav-btn">
+								<a th:href="@{/app/login/NetView/del/{delFav}(delFav=${video.tituloVideo})}">
+									<span class="favme glyphicon glyphicon-heart">
+									</a>
+									</span>
+								</div>
+								
+							</div>
+						
+							
+								<div class="panel-body">
+								
+								
+								
+
+
+
+							<!-- 	<iframe src="http://placehold.it/350x260"
+									class="img-responsive center-block" alt="Image"
+									style="height: 300px; width: 450px;"
+									th:src="@{https://www.youtube.com/embed/RYmI0yYtTm8}">
+
+								</iframe> -->
+								
+								
+					
+							
+								<iframe src="http://placehold.it/350x260"
+									class="img-responsive center-block" alt="Image"
+									style="height: 300px; width: 450px;"
+									th:src="${#strings.isEmpty(video.urlVideo)} ? 'http://placehold.it/350x260' : ${video.urlVideo}">
+
+								</iframe>
+								
+								
+								<p th:text="${video.tituloVideo}"></p>
+
+							</div>
+							
+							
+							
+						</div>
+					
+					
+					
+					
+					
+	
+
+					</div>
+					
+					
+					
+					
+
+
+
+
+
+				</div>
+			</section>
+			<!-- /.contenido -->
+		</div>
+		<!-- /.envoltura de contenido -->
+
+		<!-- Pie de página principal -->
+		<footer class="main-footer">
+			<!-- To the right -->
+			<div class="pull-right hidden-xs">Ultra HD</div>
+			<!-- Default to the left -->
+			<strong>Copyright &copy; 2022 <a href="#">NetView</a>.
+			</strong> Todos los derechos reservados.
+		</footer>
+
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUERIDO JS SCRIPTS -->
+
+	<!-- jQuery 3 -->
+	<script th:src="@{/configMenu/jquery.min.js}"></script>
+	<!-- Bootstrap 3.3.7 -->
+	<script th:src="@{/configMenu/bootstrap.min.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{/configMenu/adminlte.min.js}"></script>
+	<!-- Icono favoritos -->
+	<script src="../static/css/JS/favs.js" th:src="@{/css/JS/favs.js}"></script>
+
+</body>
+</html>

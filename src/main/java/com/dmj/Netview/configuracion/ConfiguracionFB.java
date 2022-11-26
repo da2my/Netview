@@ -21,12 +21,12 @@ public class ConfiguracionFB {
 
 		try {
 							
-			serviceAccount = new URL("https://storage.googleapis.com/netview-3cece.appspot.com/netview-3cece-firebase-0cbd343d40.json").openStream();
+			serviceAccount = new URL("https://storage.googleapis.com/netview_test2/netviewtest2.json").openStream();
 
 			FirebaseOptions options = FirebaseOptions.builder()
 
 					.setCredentials(GoogleCredentials.fromStream(serviceAccount))
-					.setDatabaseUrl("https://netview-3cece.firebaseio.com").build();
+					.setDatabaseUrl("https://netviewtest2.firebaseio.com").build();
 
 			FirebaseApp firebaseApp = FirebaseApp.initializeApp(options);
 

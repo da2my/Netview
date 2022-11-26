@@ -16,7 +16,7 @@ _Copia del proyecto en funcionamiento en tu máquina local para propósitos de d
 
 ### Ejecución App 🔧
 
-_A continuación se muestran los procesos de ejecución de NetView: _
+_A continuación se muestran los procesos de ejecución de NetView:_
 
 _Ejecución en local._
 
@@ -25,7 +25,7 @@ _Ejecución en local._
 * Ejecución de App desde el entorno de desarrollo (IDEs).
 ```
 
-_Ejecución en Web_
+_Ejecución en Web._
 
 ```
 * Instalación de un navegador Web.
@@ -44,7 +44,7 @@ _La aplicación está desplegada en el CLOUD de Google, consulte con los adminis
 
 _Herramientas usadas para crear el proyecto:_
 
-* [Spring Boot](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado.
+* [Spring Boot](https://spring.io/projects/spring-boot) - El framework web usado.
 * [Maven](https://maven.apache.org/) - Manejador de dependencias.
 * [Java](https://www.java.com/es/) - Lenguaje.
 * [Thymeleaf](https://www.thymeleaf.org/) - Maquetación web.

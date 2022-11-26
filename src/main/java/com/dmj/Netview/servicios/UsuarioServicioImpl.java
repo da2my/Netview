@@ -1,5 +1,6 @@
 package com.dmj.Netview.servicios;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -58,7 +59,7 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 
 			Usuario user = new Usuario(registrationDto.getNombre(), registrationDto.getApellidos(),
 					registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()), false,
-					Arrays.asList(roleUsuario), Arrays.asList(new Video("","")));// debe de estar a false xq un user no puede pagar sin antes registrarse
+					Arrays.asList(roleUsuario), new ArrayList<Video>());// debe de estar a false xq un user no puede pagar sin antes registrarse
 
 			return database.collection("Usuarios").document(user.getEmail()).set(user);
 						
@@ -160,11 +161,13 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 	@Override
 	public void updateFavoritos(Usuario usuario) {
 		
-		if(usuario.getFavoritos().get(0).getTituloVideo().equals("")) {
-			database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", Arrays.asList(new Video(usuario.getFavoritos().get(1).getTituloVideo(), usuario.getFavoritos().get(1).getUrlVideo())));
-		}else {
-			database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", usuario.getFavoritos());
-		}
+		database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", usuario.getFavoritos());
+		
+//		if(usuario.getFavoritos().get(0).getTituloVideo().equals("")) {
+//			database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", Arrays.asList(new Video(usuario.getFavoritos().get(1).getTituloVideo(), usuario.getFavoritos().get(1).getCaratulaVideo(), usuario.getFavoritos().get(1).getUrlVideo())));
+//		}else {
+//			database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", usuario.getFavoritos());
+//		}
 
 	}
 

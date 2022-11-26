@@ -5,9 +5,9 @@ public class Video {
 	
 	private String tituloVideo;
 	
-	//private String descripcion;
+	private String caratulaVideo;
 	
-	private String urlVideo;//url video
+	private String urlVideo;
 	
 	//private Categoria categoria;
 	
@@ -16,11 +16,14 @@ public class Video {
 		
 	}
 
-	public Video(String tituloVideo, String urlVideo) {
+
+	public Video(String tituloVideo, String caratulaVideo, String urlVideo) {
 		super();
 		this.tituloVideo = tituloVideo;
+		this.caratulaVideo = caratulaVideo;
 		this.urlVideo = urlVideo;
 	}
+
 
 	public String getTituloVideo() {
 		return tituloVideo;
@@ -36,6 +39,14 @@ public class Video {
 
 	public void setUrlVideo(String urlVideo) {
 		this.urlVideo = urlVideo;
+	}
+
+	public String getCaratulaVideo() {
+		return caratulaVideo;
+	}
+
+	public void setCaratulaVideo(String caratulaVideo) {
+		this.caratulaVideo = caratulaVideo;
 	}
 
 }

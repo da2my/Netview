@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import org.springframework.stereotype.Service;
-
 import com.dmj.Netview.modelo.Usuario;
 import com.dmj.Netview.modelo.Video;
 import com.dmj.Netview.repositorios.VideoRepositorio;
@@ -76,6 +75,8 @@ public class VideoServicio implements VideoRepositorio {
 					v.setUrlVideo(vfb.get(i).get(key1).toString());
 					String key2 = (String) it.next();
 					v.setTituloVideo(vfb.get(i).get(key2).toString());
+					String key3 = (String) it.next();
+					v.setCaratulaVideo(vfb.get(i).get(key3).toString());
 				}
 				
 				videosFavoritos.add(v);

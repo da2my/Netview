@@ -75,8 +75,6 @@ public class VideoServicio implements VideoRepositorio {
 					v.setUrlVideo(vfb.get(i).get(key1).toString());
 					String key2 = (String) it.next();
 					v.setTituloVideo(vfb.get(i).get(key2).toString());
-					String key3 = (String) it.next();
-					v.setCaratulaVideo(vfb.get(i).get(key3).toString());
 				}
 				
 				videosFavoritos.add(v);

@@ -1,7 +1,6 @@
 package com.dmj.Netview.controlador;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,10 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import com.dmj.Netview.modelo.Caratula;
 import com.dmj.Netview.modelo.Usuario;
 import com.dmj.Netview.modelo.Video;
 import com.dmj.Netview.repositorios.UsuarioRepositorio;
+import com.dmj.Netview.servicios.CaratulaServicio;
 import com.dmj.Netview.servicios.VideoServicio;
+
 
 @Controller
 public class MainController {
@@ -22,18 +24,24 @@ public class MainController {
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
+	
+	@Autowired
+	private CaratulaServicio caratulaServicio;
 
 	private Usuario usuario;
 
 	// CARTELERA
 	@ModelAttribute("cartelera")
-	public List<Video> videosCartelera() {
-		return videoServicio.findAll();
+	public List<Caratula> caratulasCartelera() {
+		String email = SecurityContextHolder.getContext().getAuthentication().getName();
+		usuario = usuarioRepositorio.buscarPorEmail(email);
+		return caratulaServicio.findAll();
 	}
 
 	@GetMapping("/app/login/NetView")
 	public String cartelera(Model model) {
 		model.addAttribute("cartelera");
+		model.addAttribute("usuarioPago", usuario);
 		return "NetView";
 	}
 
@@ -51,14 +59,14 @@ public class MainController {
 		return "NetViewFav";
 	}
 
-	// AGREGAR A FAVORITOS
+	// AGREGAR BORRAR FAVORITOS
 	@GetMapping("/app/login/NetView/add/{addFav}")
-	public String addFavorito(Model model, @PathVariable String addFav) {
+	public String addFavorito(@PathVariable String addFav) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		usuario = usuarioRepositorio.buscarPorEmail(email);
 		usuario.addVideoFavorito(videoServicio.findById(addFav));
 		usuarioRepositorio.updateFavoritos(usuario);
-		return "NetView";
+		return "redirect:/app/login/NetView/favs";
 	}
 
 	@GetMapping("/app/login/NetView/del/{delFav}")
@@ -66,10 +74,22 @@ public class MainController {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		usuario = usuarioRepositorio.buscarPorEmail(email);
 		usuarioRepositorio.deleteFavorito(usuario, delFav);
-		return "NetView";
+		return "redirect:/app/login/NetView/favs";
+	}
+	
+	//REPRODUCCION VIDEOS
+	@GetMapping("/app/login/NetView/cartVIP/{titleCV}")
+	public String carteleraVip(Model model, @PathVariable String titleCV) {
+		model.addAttribute(titleCV);
+		return "NetView_sala";
 	}
 
-	// Ruta ejemplo para acceder a la pasarela
+	@ModelAttribute("carteleraVip")
+	public List<Video> videosCartelera() {
+		return videoServicio.findAll();
+	}
+
+	// PASARELA DE PAGOS
 	@GetMapping("/app/login/NetView/pasarela")
 	public String pasarela() {
 		return "pasarela";

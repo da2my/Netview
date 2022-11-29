@@ -176,28 +176,26 @@
 				<!-- Small boxes (Stat box) -->
 				<div class="row">
 			
-					<div class="col-sm-3" th:each="video : ${cartelera}">
+					<div class="col-sm-3" th:each="caratula : ${cartelera}" th:object="${usuarioPago}">
 
 						<div class="col-item">
+						
 							<div class="row">
 							
-								<div class="fav-btn">
-								<a th:href="@{/app/login/NetView/add/{addFav}(addFav=${video.tituloVideo})}">
-									<span class="favme glyphicon glyphicon-heart">
-									</a>
-									</span>
-								</div>
+							<!-- REVISAR ESTO SI AL QUITARLO AFECTA, NO SE USA -->
 								
 							</div>
 							
 							<div class="panel-body">
-							<!--/.añadir video-->
+							<!--/.añadir caratulas-->
 
-								<video controls width="350" height="260">
-									<source	th:src="${#strings.isEmpty(video.urlVideo)} ? 'http://placehold.it/350x260' : ${video.urlVideo}" />
-								</video>
-									
-								<p th:text="${video.tituloVideo}"></p>
+								<div th:if="${usuarioPago.pagoSuscription}">
+						  			<a th:href="@{/app/login/NetView/cartVIP/{titleCV}(titleCV=${caratula.tituloCaratula})}">
+								</div>
+
+								<img th:src="${caratula.urlCaratula}"></img>
+
+								</a>
 								
 							</div>
 						</div>
@@ -225,9 +223,9 @@
 		
 		
 		
+<!-- 		
 		
-		
-		<!-- ESTA ES LA PRUEBA DEL VIDEO STREAMING-SERVICE -->
+		ESTA ES LA PRUEBA DEL VIDEO STREAMING-SERVICE
 		<div class="content-wrapper">
 
 			<section class="content">
@@ -239,7 +237,7 @@
 			</section>
 		</div>
 		
-		
+ -->		
 		
 		
 		

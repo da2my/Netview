@@ -204,28 +204,11 @@
 						
 							
 								<div class="panel-body">
-								
-								
-								
-
-
-
-							<!-- 	<iframe src="http://placehold.it/350x260"
-									class="img-responsive center-block" alt="Image"
-									style="height: 300px; width: 450px;"
-									th:src="@{https://www.youtube.com/embed/RYmI0yYtTm8}">
-
-								</iframe> -->
-								
-								
-					
+				
 							
-								<iframe src="http://placehold.it/350x260"
-									class="img-responsive center-block" alt="Image"
-									style="height: 300px; width: 450px;"
-									th:src="${#strings.isEmpty(video.urlVideo)} ? 'http://placehold.it/350x260' : ${video.urlVideo}">
-
-								</iframe>
+							<video controls width="350" height="260">
+									<source	th:src="${#strings.isEmpty(video.urlVideo)} ? 'http://placehold.it/350x260' : ${video.urlVideo}" />
+								</video>
 								
 								
 								<p th:text="${video.tituloVideo}"></p>
@@ -235,21 +218,8 @@
 							
 							
 						</div>
-					
-					
-					
-					
-					
-	
 
 					</div>
-					
-					
-					
-					
-
-
-
 
 
 				</div>

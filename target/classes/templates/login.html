@@ -2,21 +2,19 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NetView - Acceso/Registro</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NetView - Acceso/Registro</title>
 
-<link rel="stylesheet" href="../static/css/CSS/style.css"
-	th:href="@{/css/CSS/style.css}">
+	<link rel="stylesheet" href="../static/css/CSS/style.css" th:href="@{/css/CSS/style.css}">
 
-<!--Agrega redes sociales-->
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-	crossorigin="anonymous">
+	<!--Agrega redes sociales-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 </head>
+
 <body>
 
 	<form th:action="@{/app/logout}" method="POST" id="logoutForm"></form>
@@ -26,17 +24,18 @@
 			<form id="loginform" method="POST" th:action="@{/app/login-post}" role="form">
 				<h1>Inicio Sesión</h1>
 				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
-						href="#" class="social"><i class="fab fa-google-plus-g"></i></a> <a
-						href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a href="#" class="social"><i
+							class="fab fa-google-plus-g"></i></a> <a href="#" class="social"><i
+							class="fab fa-linkedin-in"></i></a>
 				</div>
-				<span>Datos de la cuenta</span> 
-				
-				<input id="login-username" type="text" class="form-control" name="username" placeholder="Email" /> 
-					
-				<input id="login-password" type="password" class="form-control" name="password" placeholder="Contraseña" /> 
-					
-					<a href="#">Olvidaste tu contraseña?</a>
+				<span>Datos de la cuenta</span>
+
+				<input id="login-username" type="text" class="form-control" name="username" placeholder="Email" />
+
+				<input id="login-password" type="password" class="form-control" name="password"
+					placeholder="Contraseña" />
+
+				<a href="#">Olvidaste tu contraseña?</a>
 
 
 				<button id="btn-login" type="submit">Acceder</button>
@@ -44,46 +43,50 @@
 
 				<!-- para mostrar mensaje de error en login -->
 				<div class="alerta" th:if="${param.error}">
-  				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Email o contraseña invalida
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Email o
+					contraseña invalida
 				</div>
 
 				<!-- menasaje de logout -->
 				<div class="alerta" th:if="${param.logout}">
-  				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Ha cerrado sesion correctamente
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Ha cerrado
+					sesion correctamente
 				</div>
-				
+
 				<!-- para mostrar mensaje en el registro -->
 				<div class="alerta" th:if="${param.reg_OK}">
-  				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Registro con exito
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Registro con
+					exito
 				</div>
-			
+
 			</form>
 		</div>
-		
-		
+
+
 		<div id="signupbox" class="form-container sign-up-container">
 			<form id="signupform" method="POST" th:action="@{/app/register}" th:object="${usuario}" role="form">
 				<h1>Crear cuenta</h1>
 				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
-						href="#" class="social"><i class="fab fa-google-plus-g"></i></a> <a
-						href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a href="#" class="social"><i
+							class="fab fa-google-plus-g"></i></a> <a href="#" class="social"><i
+							class="fab fa-linkedin-in"></i></a>
 				</div>
 				<span>Registro en Netview</span>
-				 			
-				<input name="nombre" type="text" placeholder="Nombre" th:field="*{nombre}" /> <!-- th:field="*{nombre}" -->
+
+				<input name="nombre" type="text" placeholder="Nombre" th:field="*{nombre}" />
+				<!-- th:field="*{nombre}" -->
 				<input name="apellido" type="text" placeholder="Apellidos" th:field="*{apellidos}" />
 				<input name="email" type="email" placeholder="Email" th:field="*{email}" />
 				<input name="contrasena" type="password" placeholder="Contraseña" th:field="*{contrasena}" />
-				
+
 				<button id="btn-signup" type="submit">Registrate</button>
-				
+
 			</form>
 		</div>
-		
+
 		<div class="overlay-container">
 			<div class="overlay">
-			
+
 				<div class="overlay-panel overlay-left">
 					<h1>Bienvenido de nuevo!</h1>
 					<p>Para acceder al mejor contenido visual, inicia sesion con
@@ -91,17 +94,19 @@
 					<!-- esto funciona para redireccionar a otro pagina 
 					<button onclick="location.href='../templates/index.html'"
 						class="ghost" id="signIn">Iniciar sesion</button> -->
-					<a class="ghost" id="signIn" href="" onclick="$('#signupbox').hide(); $('#loginbox').show()">Iniciar sesion</a>
+					<a class="ghost" id="signIn" href="" onclick="$('#signupbox').hide(); $('#loginbox').show()">Iniciar
+						sesion</a>
 
 
 				</div>
 				<div class="overlay-panel overlay-right">
 					<h1>Hola, bienvenido!</h1>
 					<p>Introduzca sus datos y comience el viaje en NetView.</p>
-					<a class="ghost" id="signUp" href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Registro</a>
+					<a class="ghost" id="signUp" href="#"
+						onClick="$('#loginbox').hide(); $('#signupbox').show()">Registro</a>
 					<!-- http://localhost:8000/app/login# -->
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
@@ -109,11 +114,9 @@
 	<!-- Parte javaScript para el movimiento acceso -->
 	<script src="../static/css/JS/main.js" th:src="@{/css/JS/main.js}"></script>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
 		th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 

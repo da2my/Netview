@@ -20,4 +20,6 @@ public interface UsuarioRepositorio extends UserDetailsService {
 
 	void deleteFavorito(Usuario usuario, String tituloVideoFavUser);
 
+	void actualizarpago(Usuario usuario, Boolean success);
+
 }

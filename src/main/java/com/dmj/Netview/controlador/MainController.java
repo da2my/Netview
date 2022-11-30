@@ -94,4 +94,11 @@ public class MainController {
 	public String pasarela() {
 		return "pasarela";
 	}
+
+	// PAGO EXITO
+	@GetMapping("/app/login/NetView/pagoexito/{success}")
+	public String pagoexito(@PathVariable boolean success) {
+		usuarioRepositorio.actualizarpago(usuario, success);
+		return "pagoexito";
+	}
 }

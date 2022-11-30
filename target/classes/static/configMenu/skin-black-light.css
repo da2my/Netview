@@ -59,6 +59,7 @@
   background-color: #fcfcfc;
 }
 @media (max-width: 767px) {
+  
   .skin-black-light .main-header .logo {
     background-color: #222222;
     color: #ffffff;

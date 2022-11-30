@@ -131,31 +131,35 @@
 
                 <!-- Menú de la barra lateral -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">INICIO</li>
-                    <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#"><i class="fa fa-link"></i>
-                            <span>Cartelera</span></a></li>
-                    <li class="treeview"><a href="#"><i class="glyphicon glyphicon-th-large"></i> <span>Tus
-                                favoritos</span></a></li>
-                    <li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> <span>Tus
-                                reproducciones</span> <span class="pull-right-container"> <i
-                                    class="fa fa-angle-left pull-right"></i>
-                            </span> </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir
-                                    viendo</a></li>
-                            <li><a href="#"><i class="fa fa-tags"></i>Video anterior</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview"><a href="#"><i class="fa fa-area-chart"></i> <span>Historial vídeos</span>
-                            <span class="pull-right-container">
-                            </span> </a>
-                    </li>
-                    <li class="treeview"><a href="#"><i class="fa fa-area-chart"></i> <span>Configuración</span> <span
-                                class="pull-right-container">
-                            </span> </a>
-                    </li>
-                </ul>
+					<li class="header">INICIO</li>
+					<!-- Optionally, you can add icons to the links -->
+					<li><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i>
+							<span>Cartelera</span></a></li>
+
+					<li><a th:href="@{/app/login/NetView/favs}"><i class="glyphicon glyphicon-th-large"></i> 
+							<span>Tus favoritos</span></a></li>
+
+					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> 
+
+						<span>Tus reproducciones</span> <span class="pull-right-container"> <i
+									class="fa fa-angle-left pull-right"></i>
+							</span> </a>
+
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir viendo</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Video anterior</a></li>
+						</ul>
+					</li>
+					
+					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
+					<span>Historial de vídeos</span></a></li>
+							
+					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
+					<span>Configuración</span></a></li>
+			
+			
+			
+				</ul>
                 <!-- /.Menú de la barra lateral -->
             </section>
             <!-- /.Barra lateral -->

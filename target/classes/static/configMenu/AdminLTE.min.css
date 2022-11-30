@@ -54,12 +54,18 @@ body {
 .cambiarposi{
     
     font-size: 25px;
-margin-top: 5%;
+    margin-top: 5%;
+}
+.controlarespacio{
+    max-width: 315px !important;
+}
+.col-sm-3{
+    min-width: 320px!important;
 }
 
 .titulopeli{
-font-size: 15px;
-margin-bottom: -5%;
+font-size: 25px;
+margin-bottom: -15%;
 }
 
 .content-wrapper,
@@ -83,6 +89,10 @@ margin-bottom: -5%;
     .main-footer {
         margin-left: 0
     }
+    .titulopeli{
+        font-size: 15px;
+        margin-bottom: -5%;
+        }
 }
 
 @media (min-width:768px) {

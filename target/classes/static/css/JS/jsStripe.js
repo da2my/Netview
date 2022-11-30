@@ -26,6 +26,7 @@ $(document).ready(function () {
     }
   }
 
+
   $("#order-btn").click(function (event) {
     var checkoutMode = $(event.target).data("checkoutMode");
     var priceId = $(event.target).data("priceId");
@@ -35,7 +36,7 @@ $(document).ready(function () {
       .redirectToCheckout({
         mode: checkoutMode,
         lineItems: items,
-        successUrl: DOMAIN + "pagoexito",
+        successUrl: DOMAIN + "pagoexito/true",
         cancelUrl: DOMAIN + "main.html?success=false",
       })
       .then(handleResult);
@@ -49,7 +50,7 @@ $(document).ready(function () {
       .redirectToCheckout({
         mode: checkoutMode,
         lineItems: items,
-        successUrl: DOMAIN + "exito.html?success=true",
+        successUrl: DOMAIN + "pagoexito?success=true",
         cancelUrl: DOMAIN + "main.html?success=false",
       })
       .then(handleResult);
@@ -64,7 +65,7 @@ $(document).ready(function () {
       .redirectToCheckout({
         mode: checkoutMode,
         lineItems: items,
-        successUrl: DOMAIN + "exito.html?success=true",
+        successUrl: DOMAIN + "pagoexito?success=true",
         cancelUrl: DOMAIN + "main.html?success=false",
       })
       .then(handleResult);

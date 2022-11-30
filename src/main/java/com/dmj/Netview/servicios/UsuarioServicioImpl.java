@@ -181,4 +181,11 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 		database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", favUser);
 	
 	}
+
+	@Override
+	public void actualizarpago(Usuario usuario, Boolean success) {
+
+		database.collection("Usuarios").document(usuario.getEmail()).update("pago", success);
+
+	}
 }

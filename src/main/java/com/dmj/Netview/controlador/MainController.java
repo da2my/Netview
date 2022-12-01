@@ -24,7 +24,7 @@ public class MainController {
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
-	
+
 	@Autowired
 	private CaratulaServicio caratulaServicio;
 
@@ -36,6 +36,20 @@ public class MainController {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		usuario = usuarioRepositorio.buscarPorEmail(email);
 		return caratulaServicio.findAll();
+	}
+
+	@ModelAttribute("topValoradas")
+	public List<Caratula> caratulasValoradas() {
+		String email = SecurityContextHolder.getContext().getAuthentication().getName();
+		usuario = usuarioRepositorio.buscarPorEmail(email);
+		return caratulaServicio.findValoradas();
+	}
+
+	@GetMapping("/app/login/NetView/top")
+	public String listTop(Model model) {
+		model.addAttribute("topValoradas");
+		model.addAttribute("usuarioPago", usuario);
+		return "NetView_top";
 	}
 
 	@GetMapping("/app/login/NetView")
@@ -76,8 +90,8 @@ public class MainController {
 		usuarioRepositorio.deleteFavorito(usuario, delFav);
 		return "redirect:/app/login/NetView/favs";
 	}
-	
-	//REPRODUCCION VIDEOS
+
+	// REPRODUCCION VIDEOS
 	@GetMapping("/app/login/NetView/cartVIP/{titleCV}")
 	public String carteleraVip(Model model, @PathVariable String titleCV) {
 		model.addAttribute(titleCV);

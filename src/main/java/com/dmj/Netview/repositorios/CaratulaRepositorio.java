@@ -11,4 +11,6 @@ public interface CaratulaRepositorio {
 	
 	List<Caratula> findAll();
 
+	List<Caratula> findValoradas();
+
 }

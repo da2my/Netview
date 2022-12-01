@@ -53,9 +53,9 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<!-- Menú de la cuenta de usuario -->
-						 <li>
-							<a th:href="@{/app/login/NetView/pasarela}"  class="suscribete">SUSCRIBETE</a>
-						</li> 
+						<li>
+							<a th:href="@{/app/login/NetView/pasarela}" class="suscribete">SUSCRIBETE</a>
+						</li>
 						<li class="dropdown user user-menu">
 							<!-- Botón de alternancia del menú --> <a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">
@@ -92,7 +92,7 @@
 		<!-- Columna lateral izquierda. Contiene el logotipo y la barra lateral -->
 		<aside class="main-sidebar">
 
-		
+
 			<section class="sidebar">
 
 				<!-- Panel de usuario de la barra lateral (opcional) -->
@@ -129,12 +129,12 @@
 					<li class="active"><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i>
 							<span>Cartelera</span></a></li>
 
-					<li><a th:href="@{/app/login/NetView/favs}"><i class="glyphicon glyphicon-th-large"></i> 
+					<li><a th:href="@{/app/login/NetView/favs}"><i class="glyphicon glyphicon-th-large"></i>
 							<span>Tus favoritos</span></a></li>
 
-					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> 
+					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i>
 
-						<span>Tus reproducciones</span> <span class="pull-right-container"> <i
+							<span>Tus reproducciones</span> <span class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 
@@ -143,16 +143,17 @@
 							<li><a href="#"><i class="fa fa-tags"></i>Video anterior</a></li>
 						</ul>
 					</li>
-					
+
 					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
-					<span>Historial de vídeos</span></a></li>
-							
+							<span>Historial de vídeos</span></a></li>
+
 					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
-					<span>Configuración</span></a></li>
-					
-					
-					
-<!-- 					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i> <span>Historial vídeos</span> <span
+							<span>Configuración</span></a></li>
+
+					<li><a th:href="@{/app/login/NetView/top}"><i class="glyphicon glyphicon-th-large"></i>
+							<span>Mejor Valoradas</span></a></li>
+
+					<!-- 					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i> <span>Historial vídeos</span> <span
 								class="pull-right-container">
 							</span> </a>
 					</li>
@@ -160,9 +161,9 @@
 						class="pull-right-container">
 					</span> </a>
 			</li>  -->
-			
-			
-			
+
+
+
 				</ul>
 				<!-- /.Menú de la barra lateral -->
 			</section>
@@ -175,37 +176,38 @@
 			<section class="content">
 				<!-- Small boxes (Stat box) -->
 				<div class="row">
-			
+
 					<div class="col-sm-3" th:each="caratula : ${cartelera}" th:object="${usuarioPago}">
 
 						<div class="col-item">
-						
+
 							<div class="row">
-							
-							<!-- REVISAR ESTO SI AL QUITARLO AFECTA, NO SE USA -->
-								
+
+								<!-- REVISAR ESTO SI AL QUITARLO AFECTA, NO SE USA -->
+
 							</div>
-							
+
 							<div class="panel-body">
-							<!--/.añadir caratulas-->
+								<!--/.añadir caratulas-->
 
 								<div th:if="${usuarioPago.pago}">
-						  			<a th:href="@{/app/login/NetView/cartVIP/{titleCV}(titleCV=${caratula.tituloCaratula})}">
+									<a
+										th:href="@{/app/login/NetView/cartVIP/{titleCV}(titleCV=${caratula.tituloCaratula})}">
 								</div>
 
 								<img th:src="${caratula.urlCaratula}" class="img-responsive center-block"></img>
 
 								</a>
-								
+
 							</div>
 						</div>
 					</div>
 				</div>
 
-			
 
 
-<!-- 
+
+				<!-- 
 
 <div id="image_url_1"></div> ESTO ES LO DE LA API
 
@@ -217,13 +219,13 @@
 			<!-- /.contenido -->
 		</div>
 		<!-- /.envoltura de contenido -->
-		
-		
-		
-		
-		
-		
-<!-- 		
+
+
+
+
+
+
+		<!-- 		
 		
 		ESTA ES LA PRUEBA DEL VIDEO STREAMING-SERVICE
 		<div class="content-wrapper">
@@ -237,11 +239,11 @@
 			</section>
 		</div>
 		
- -->		
-		
-		
-		
-		
+ -->
+
+
+
+
 
 		<!-- Pie de página principal -->
 		<footer class="main-footer">

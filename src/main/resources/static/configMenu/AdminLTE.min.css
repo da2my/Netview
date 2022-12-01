@@ -58,6 +58,7 @@ body {
 }
 .controlarespacio{
     max-width: 315px !important;
+    /* margin-top: 20px; */
 }
 .col-sm-3{
     min-width: 320px!important;
@@ -65,7 +66,7 @@ body {
 
 .titulopeli{
 font-size: 25px;
-margin-bottom: -15%;
+margin-bottom: -11%;
 }
 
 .content-wrapper,

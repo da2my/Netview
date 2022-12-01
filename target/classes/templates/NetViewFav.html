@@ -135,12 +135,13 @@
 					<li><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i>
 							<span>Cartelera</span></a></li>
 
-					<li class="active"><a th:href="@{/app/login/NetView/favs}"><i class="glyphicon glyphicon-th-large"></i> 
+					<li class="active"><a th:href="@{/app/login/NetView/favs}"><i
+								class="glyphicon glyphicon-th-large"></i>
 							<span>Tus favoritos</span></a></li>
 
-					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> 
+					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i>
 
-						<span>Tus reproducciones</span> <span class="pull-right-container"> <i
+							<span>Tus reproducciones</span> <span class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 
@@ -149,15 +150,15 @@
 							<li><a href="#"><i class="fa fa-tags"></i>Video anterior</a></li>
 						</ul>
 					</li>
-					
+
 					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
-					<span>Historial de vídeos</span></a></li>
-							
+							<span>Historial de vídeos</span></a></li>
+
 					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
-					<span>Configuración</span></a></li>
-			
-			
-			
+							<span>Configuración</span></a></li>
+
+
+
 				</ul>
 				<!-- /.Menú de la barra lateral -->
 			</section>
@@ -183,13 +184,13 @@
 							<div class="row">
 
 
-								
+
 
 							</div>
-							
+
 							<div class="panel-body">
 								<p class="titulopeli" th:text="${video.tituloVideo}"></p>
-								
+
 								<video controls width="350" height="260" class="controlarespacio">
 									<source
 										th:src="${#strings.isEmpty(video.urlVideo)} ? 'http://placehold.it/350x260' : ${video.urlVideo}" />
@@ -202,7 +203,7 @@
 								</div>
 							</div>
 
-							
+
 
 						</div>
 

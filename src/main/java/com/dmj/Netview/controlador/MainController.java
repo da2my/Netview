@@ -94,13 +94,8 @@ public class MainController {
 	// REPRODUCCION VIDEOS
 	@GetMapping("/app/login/NetView/cartVIP/{titleCV}")
 	public String carteleraVip(Model model, @PathVariable String titleCV) {
-		model.addAttribute(titleCV);
+		model.addAttribute(videoServicio.findById(titleCV));
 		return "NetView_sala";
-	}
-
-	@ModelAttribute("carteleraVip")
-	public List<Video> videosCartelera() {
-		return videoServicio.findAll();
 	}
 
 	// PASARELA DE PAGOS

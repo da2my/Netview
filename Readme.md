@@ -49,7 +49,9 @@ _Herramientas usadas para crear el proyecto:_
 * [Java](https://www.java.com/es/) - Lenguaje.
 * [Thymeleaf](https://www.thymeleaf.org/) - Maquetación web.
 * [HTML](https://www.w3schools.com/html/) - Maquetación web.
-* [FireBase](https://firebase.google.com/) - Usado para generar RSS
+* [CSS](https://www.w3schools.com/css/default.asp) - Maquetación web.
+* [JavaScript](https://www.w3schools.com/js/) - Maquetación Back-End/Front-End/web.
+* [FireBase](https://firebase.google.com/) - Usado para generar RSS.
 
 
 

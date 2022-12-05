@@ -31,10 +31,8 @@
 
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-		crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 </head>
 
@@ -43,7 +41,8 @@
 
 		<!-- Cabecera principal -->
 		<header class="main-header">
-			<a href="#" class="logo"> <!-- mini logo para barra lateral mini 50x50 pixeles -->
+			<a href="#" class="logo">
+				<!-- mini logo para barra lateral mini 50x50 pixeles -->
 				<span class="logo-mini"><b>N</b>V</span> <!-- logo para el estado normal y los dispositivos móviles -->
 				<span class="logo-lg"><b>NetView</b></span>
 			</a>
@@ -51,32 +50,33 @@
 			<!-- Barra de navegación de la cabecera -->
 			<nav class="navbar navbar-static-top" role="navigation">
 				<!-- Botón de alternancia de la barra lateral-->
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu"
-					role="button"> <span class="sr-only">Toggle navigation</span>
+				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"> <span class="sr-only">Toggle
+						navigation</span>
 				</a>
 				<!-- Menú derecho de la barra de navegación -->
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<!-- Menú de la cuenta de usuario -->
 						<li class="dropdown user user-menu">
-							<!-- Botón de alternancia del menú --> <a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
-								<img th:src="@{/configMenu/avatar3.png}" class="user-image"
-								alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
+							<!-- Botón de alternancia del menú --> <a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">
+								<!-- The user image in the navbar-->
+								<img th:src="@{/configMenu/avatar3.png}" class="user-image" alt="User Image">
+								<!-- hidden-xs hides the username on small devices so only the image appears. -->
 								<span class="hidden-xs" sec:authentication="principal.username">
 									@{usuario.nombre}</span>
-						</a>
+							</a>
 							<ul class="dropdown-menu">
 								<!-- La imagen del usuario en el menú -->
-								<li class="user-header"><img
-									th:src="@{/configMenu/avatar3.png}" class="img-circle"
-									alt="User Image">
+								<li class="user-header"><img th:src="@{/configMenu/avatar3.png}" class="img-circle"
+										alt="User Image">
 
 									<p>
 										Bienvenido - <span sec:authentication="principal.username">
 											Usuario</span><small sec:authentication="principal.Authorities">
 										</small>
-									</p></li>
+									</p>
+								</li>
 								<!-- Menu pie-->
 								<li class="user-footer">
 									<div class="pull-right">
@@ -99,8 +99,7 @@
 				<!-- Panel de usuario de la barra lateral (opcional) -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img th:src="@{/configMenu/avatar3.png}" class="img-circle"
-							alt="User Image">
+						<img th:src="@{/configMenu/avatar3.png}" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<p>
@@ -114,10 +113,9 @@
 				<!-- formulario de búsqueda (opcional) -->
 				<form action="#" method="get" class="sidebar-form">
 					<div class="input-group">
-						<input type="text" name="q" class="form-control"
-							placeholder="Buscar..."> <span class="input-group-btn">
-							<button type="submit" name="search" id="search-btn"
-								class="btn btn-flat">
+						<input type="text" name="q" class="form-control" placeholder="Buscar..."> <span
+							class="input-group-btn">
+							<button type="submit" name="search" id="search-btn" class="btn btn-flat">
 								<i class="fa fa-search"></i>
 							</button>
 						</span>
@@ -129,40 +127,37 @@
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">INICIO</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li><a th:href="@{/app/login/NetView}"><i
-							class="fa fa-link"></i> <span>Cartelera</span></a></li>
+					<li><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i> <span>Cartelera</span></a></li>
 
 					<!-- th:href="@{/logout}" -->
-					<li sec:authorize="isAuthenticated()"><a
-						th:href="@{/app/login/NetView/favs}"><i
-							class="fa fa-area-chart"></i> <span>Tus
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/app/login/NetView/favs}"><i
+								class="fa fa-area-chart"></i> <span>Tus
 								favoritos</span></a></li>
 
-					<li class="treeview"><a href="#"><i
-							class="fa fa-cart-arrow-down"></i> <span>Tus
+					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> <span>Tus
 								reproducciones</span> <span class="pull-right-container"> <i
-								class="fa fa-angle-left pull-right"></i>
-						</span> </a>
+									class="fa fa-angle-left pull-right"></i>
+							</span> </a>
 						<ul class="treeview-menu">
 							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir
 									viendo</a></li>
 							<li><a href="#"><i class="fa fa-tags"></i>Video anterior</a></li>
-						</ul></li>
-					<li class="treeview"><a href="#"><i
-							class="fa fa-area-chart"></i> <span>Historial de vídeos</span></a></li>
+						</ul>
+					</li>
+					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i> <span>Historial de
+								vídeos</span></a></li>
 
-					<li class="treeview"><a href="#"><i
-							class="fa fa-cart-arrow-down"></i> <span>Configuración</span> <span class="pull-right-container"> <i
-								class="fa fa-angle-left pull-right"></i>
-						</span></a>
+					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> <span>Configuración</span>
+							<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							</span></a>
 						<ul class="treeview-menu">
 							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Datos personales</a></li>
 							<li><a href="#"><i class="fa fa-tags"></i>Cambio de avatar</a></li>
 							<li><a href="#"><i class="fa fa-tags"></i>Configuración suscripción</a></li>
-						</ul></li>
+						</ul>
+					</li>
 
-					<li><a th:href="@{/app/login/NetView/top}"><i
-							class="fa fa-area-chart"></i> <span>Mejor
+					<li><a th:href="@{/app/login/NetView/top}"><i class="fa fa-area-chart"></i> <span>Mejor
 								Valoradas</span></a></li>
 
 				</ul>
@@ -177,14 +172,7 @@
 			<section class="content">
 				<!-- Small boxes (Stat box) -->
 				<div class="row">
-
-
-
-
-
-
 					<div class="col-sm-2" th:object="${video}">
-
 
 						<!-- <p th:text="${titleCV}"></p> -->
 
@@ -202,35 +190,24 @@
 									</video>
 								</div>
 								<div class="fav-btn">
-									<a
-										th:href="@{/app/login/NetView/add/{addFav}(addFav=${video.tituloVideo})}">
+									<a th:href="@{/app/login/NetView/add/{addFav}(addFav=${video.tituloVideo})}">
 										<span class="favme glyphicon glyphicon-heart cambiarposi">
 									</a> </span>
 								</div>
+								<div th:object="${usuario}">
+									<div class="col-md-offset-2 col-md-8"
+										th:if="${usuario.getRoles().get(0).getNombre() == 'ROLE_ADMIN'}">
 
+										<button type="submit" class="btn btn-default">Añadir video</button>
 
+										<button type="submit" class="btn btn-default">Eliminar video</button>
 
-
-
-
-
+									</div>
+								</div>
 							</div>
-
-
-
 						</div>
-
-
-
-
-
-
 					</div>
-
-
 				</div>
-
-
 			</section>
 			<!-- /.contenido -->
 		</div>
@@ -258,8 +235,5 @@
 	<!-- AdminLTE App -->
 	<script th:src="@{/configMenu/adminlte.min.js}"></script>
 
-
-
 </body>
-
 </html>

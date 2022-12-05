@@ -16,26 +16,24 @@ import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.firebase.cloud.FirestoreClient;
 
-
 @Service
 public class VideoServicio implements VideoRepositorio {
 
-	
 	// todos los videos (cartelera)
 	public List<Video> findAll() {
-		
+
 		Firestore database = FirestoreClient.getFirestore();
-		List <Video> allVideos = new ArrayList<>();
+		List<Video> allVideos = new ArrayList<>();
 
 		try {
-			
+
 			ApiFuture<QuerySnapshot> future = database.collection("Videos").get();
 			List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-			
+
 			for (QueryDocumentSnapshot document : documents) {
 				allVideos.add(document.toObject(Video.class));
 			}
-			
+
 			return allVideos;
 
 		} catch (InterruptedException e) {
@@ -49,38 +47,39 @@ public class VideoServicio implements VideoRepositorio {
 		return null;
 	}
 
-	//videos favoritos de un usuario
+	// videos favoritos de un usuario
 	public List<Video> favoritosDeUsuario(Usuario usuario) {
-		
+
 		Firestore database = FirestoreClient.getFirestore();
-		List <Video> videosFavoritos = new ArrayList<>();
+		List<Video> videosFavoritos = new ArrayList<>();
 		ArrayList<HashMap<String, Object>> vfb = new ArrayList<>();
 
 		try {
-			
-			ApiFuture<QuerySnapshot> future = database.collection("Usuarios").whereEqualTo("email", usuario.getEmail()).get();
+
+			ApiFuture<QuerySnapshot> future = database.collection("Usuarios").whereEqualTo("email", usuario.getEmail())
+					.get();
 			List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-			
+
 			for (QueryDocumentSnapshot document : documents) {
-								
+
 				vfb = (ArrayList<HashMap<String, Object>>) document.get("favoritos");
 
 			}
-						
-			for(int i = 0; i<vfb.size(); i++) {
+
+			for (int i = 0; i < vfb.size(); i++) {
 				Video v = new Video();
 				Iterator it = vfb.get(i).keySet().iterator();
-				while(it.hasNext()) {
+				while (it.hasNext()) {
 					String key1 = (String) it.next();
 					v.setUrlVideo(vfb.get(i).get(key1).toString());
 					String key2 = (String) it.next();
 					v.setTituloVideo(vfb.get(i).get(key2).toString());
 				}
-				
+
 				videosFavoritos.add(v);
-			
+
 			}
-		
+
 			return videosFavoritos;
 
 		} catch (InterruptedException e) {
@@ -90,20 +89,21 @@ public class VideoServicio implements VideoRepositorio {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
-	//buscar video por tituloVideo
+	// buscar video por tituloVideo
 	public Video findById(String tituloVideo) {
-		
+
 		Firestore database = FirestoreClient.getFirestore();
 
 		try {
-			
-			ApiFuture<QuerySnapshot> future = database.collection("Videos").whereEqualTo("tituloVideo", tituloVideo).get();
+
+			ApiFuture<QuerySnapshot> future = database.collection("Videos").whereEqualTo("tituloVideo", tituloVideo)
+					.get();
 			List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-			if(!documents.isEmpty()) {
+			if (!documents.isEmpty()) {
 				DocumentSnapshot doc = documents.get(0);
 				Video video = new Video();
 				video = doc.toObject(Video.class);
@@ -117,10 +117,9 @@ public class VideoServicio implements VideoRepositorio {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return new Video();
-		
-	}
 
+		return new Video();
+
+	}
 
 }

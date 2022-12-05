@@ -103,7 +103,6 @@ public class VideoServicio implements VideoRepositorio {
 			
 			ApiFuture<QuerySnapshot> future = database.collection("Videos").whereEqualTo("tituloVideo", tituloVideo).get();
 			List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-			
 			if(!documents.isEmpty()) {
 				DocumentSnapshot doc = documents.get(0);
 				Video video = new Video();

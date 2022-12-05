@@ -95,6 +95,8 @@ public class MainController {
 	@GetMapping("/app/login/NetView/cartVIP/{titleCV}")
 	public String carteleraVip(Model model, @PathVariable String titleCV) {
 		model.addAttribute(videoServicio.findById(titleCV));
+		//objeto usuario para gestion de ROLE_ADMIN
+		model.addAttribute(usuario);
 		return "NetView_sala";
 	}
 

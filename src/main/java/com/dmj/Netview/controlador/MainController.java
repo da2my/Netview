@@ -15,7 +15,6 @@ import com.dmj.Netview.repositorios.UsuarioRepositorio;
 import com.dmj.Netview.servicios.CaratulaServicio;
 import com.dmj.Netview.servicios.VideoServicio;
 
-
 @Controller
 public class MainController {
 
@@ -95,7 +94,7 @@ public class MainController {
 	@GetMapping("/app/login/NetView/cartVIP/{titleCV}")
 	public String carteleraVip(Model model, @PathVariable String titleCV) {
 		model.addAttribute(videoServicio.findById(titleCV));
-		//objeto usuario para gestion de ROLE_ADMIN
+		// objeto usuario para gestion de ROLE_ADMIN
 		model.addAttribute(usuario);
 		return "NetView_sala";
 	}

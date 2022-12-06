@@ -43,7 +43,7 @@
 
 		<!-- Cabecera principal -->
 		<header class="main-header">
-			<a href="#" class="logo">
+			<a th:href="@{/app/login/NetView}" class="logo">
 				<!-- mini logo para barra lateral mini 50x50 pixeles -->
 				<span class="logo-mini"><b>N</b>V</span> <!-- logo para el estado normal y los dispositivos móviles -->
 				<span class="logo-lg"><b>NetView</b></span>
@@ -105,60 +105,54 @@
 					</div>
 					<div class="pull-left info">
 						<p>
-							Bienvenid@, <span sec:authentication="principal.username">Usuario</span>
+							Bienvenid@: <br> <span sec:authentication="principal.username">Usuario</span>
 						</p>
 						<!-- Estado -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
 
-				<!-- formulario de búsqueda (opcional) -->
-				<form action="#" method="get" class="sidebar-form">
-					<div class="input-group">
-						<input type="text" name="q" class="form-control" placeholder="Buscar..."> <span
-							class="input-group-btn">
-							<button type="submit" name="search" id="search-btn" class="btn btn-flat">
-								<i class="fa fa-search"></i>
-							</button>
-						</span>
-					</div>
-				</form>
-				<!-- /.formulario de búsqueda -->
-
 				<!-- Menú de la barra lateral -->
 				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">INICIO</li>
+					<li class="header"></li>
 					<!-- Optionally, you can add icons to the links -->
-					<li><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i>
-							<span>Cartelera</span></a></li>
+					<li><a th:href="@{/app/login/NetView}"><i
+							class="fa fa-link"></i> <span>Cartelera</span></a></li>
 
-					<li class="active"><a th:href="@{/app/login/NetView/favs}"><i
-								class="fa fa-area-chart"></i>
-							<span>Tus favoritos</span></a></li>
+					<!-- th:href="@{/logout}" -->
+					<li class="active" sec:authorize="isAuthenticated()"><a
+						th:href="@{/app/login/NetView/favs}"><i
+							class="fa fa-area-chart"></i> <span>Tus
+								favoritos</span></a></li>
 
-					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i>
-
-							<span>Tus reproducciones</span> <span class="pull-right-container"> <i
-									class="fa fa-angle-left pull-right"></i>
-							</span> </a>
-
+					<li class="treeview"><a href="#"><i
+							class="fa fa-cart-arrow-down"></i> <span>Tus
+								reproducciones</span> <span class="pull-right-container"> <i
+								class="fa fa-angle-left pull-right"></i>
+						</span> </a>
 						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir viendo</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>Video anterior</a></li>
-						</ul>
-					</li>
+							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir
+									viendo</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
+						</ul></li>
 
-					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
-							<span>Historial de vídeos</span></a></li>
+					<li class="treeview"><a href="#"><i
+							class="fa fa-cart-arrow-down"></i> <span>Configuración</span> <span class="pull-right-container"> <i
+								class="fa fa-angle-left pull-right"></i>
+						</span></a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Datos personales</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Cambio de avatar</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Configuración suscripción</a></li>
+						</ul></li>
 
-					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
-							<span>Configuración</span></a></li>
-
-					<li><a th:href="@{/app/login/NetView/top}"><i class="fa fa-area-chart"></i>
-							<span>Mejor Valoradas</span></a></li>
+					<li><a th:href="@{/app/login/NetView/top}"><i
+							class="fa fa-area-chart"></i> <span>Mejor
+								Valoradas</span></a></li>
 
 				</ul>
 				<!-- /.Menú de la barra lateral -->
+				
 			</section>
 			<!-- /.Barra lateral -->
 		</aside>
@@ -179,12 +173,6 @@
 					<div class="col-sm-3" th:each="video : ${favoritos}">
 
 						<div class="col-item">
-							<div class="row">
-
-
-
-
-							</div>
 
 							<div class="panel-body">
 								<p class="titulopeli" th:text="${video.tituloVideo}"></p>
@@ -235,8 +223,6 @@
 	<script th:src="@{/configMenu/bootstrap.min.js}"></script>
 	<!-- AdminLTE App -->
 	<script th:src="@{/configMenu/adminlte.min.js}"></script>
-	<!-- Icono favoritos -->
-	<script src="../static/css/JS/favs.js" th:src="@{/css/JS/favs.js}"></script>
 
 </body>
 

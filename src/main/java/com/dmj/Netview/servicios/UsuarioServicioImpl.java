@@ -59,7 +59,7 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 
 			Usuario user = new Usuario(registrationDto.getNombre(), registrationDto.getApellidos(),
 					registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()), false,
-					Arrays.asList(roleUsuario), new ArrayList<Video>());// debe de estar a false xq un user no puede pagar sin antes registrarse
+					Arrays.asList(roleUsuario), new ArrayList<Video>(), new ArrayList<Video>(), new ArrayList<Video>());// debe de estar a false xq un user no puede pagar sin antes registrarse
 
 			return database.collection("Usuarios").document(user.getEmail()).set(user);
 						
@@ -162,12 +162,6 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 	public void updateFavoritos(Usuario usuario) {
 		
 		database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", usuario.getFavoritos());
-		
-//		if(usuario.getFavoritos().get(0).getTituloVideo().equals("")) {
-//			database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", Arrays.asList(new Video(usuario.getFavoritos().get(1).getTituloVideo(), usuario.getFavoritos().get(1).getCaratulaVideo(), usuario.getFavoritos().get(1).getUrlVideo())));
-//		}else {
-//			database.collection("Usuarios").document(usuario.getEmail()).update("favoritos", usuario.getFavoritos());
-//		}
 
 	}
 

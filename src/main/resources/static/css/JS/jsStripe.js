@@ -31,7 +31,6 @@ $(document).ready(function () {
     var checkoutMode = $(event.target).data("checkoutMode");
     var priceId = $(event.target).data("priceId");
     var items = [{ price: priceId, quantity: 1 }];
-
     stripe
       .redirectToCheckout({
         mode: checkoutMode,
@@ -50,7 +49,7 @@ $(document).ready(function () {
       .redirectToCheckout({
         mode: checkoutMode,
         lineItems: items,
-        successUrl: DOMAIN + "pagoexito?success=true",
+        successUrl: DOMAIN + "pagoexito/true",
         cancelUrl: DOMAIN + "main.html?success=false",
       })
       .then(handleResult);
@@ -60,15 +59,25 @@ $(document).ready(function () {
     var checkoutMode = $(event.target).data("checkoutMode");
     var priceId = $(event.target).data("priceId");
     var items = [{ price: priceId, quantity: 1 }];
-
     stripe
       .redirectToCheckout({
         mode: checkoutMode,
         lineItems: items,
-        successUrl: DOMAIN + "pagoexito?success=true",
+        successUrl: DOMAIN + "pagoexito/true",
         cancelUrl: DOMAIN + "main.html?success=false",
       })
       .then(handleResult);
   }
   );
 });
+
+
+
+
+/*
+const stripe = require('stripe')('sk_test_51M2ITwE31NdlKO7ZdAWpRH9jTYmhXfraWVmXwZvnvz5FoOVjyWMyHsBASHItPZyhSES6lbKCRrLGI4W3MUKpTqiI00Cn23DYcl');
+
+const deleted = await stripe.subscriptions.del(
+  'sub_1M9uCkE31NdlKO7ZnzOkHSkS'
+);
+*/

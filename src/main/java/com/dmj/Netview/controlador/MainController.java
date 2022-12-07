@@ -188,5 +188,11 @@ public class MainController {
     public String ConfiguracionAvatar() {
         return "NetViewAvt";
     }
-
+	
+	//cancelar suscripcion
+    @GetMapping("/app/login/NetView/cfgSusc/cancel")
+    public String CancelarSuscripcion() {
+		usuarioRepositorio.actualizarpago(usuario, false);
+		return "redirect:https://billing.stripe.com/p/login/test_8wM3f91T90hg7kI144";
+    }
 }

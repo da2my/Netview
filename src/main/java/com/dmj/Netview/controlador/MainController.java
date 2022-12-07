@@ -171,5 +171,22 @@ public class MainController {
 	public String paginaMensaje() {
 		return "NetViewMensaje";
 	}
+	//configuracion usuario
+    @GetMapping("/app/login/NetView/cfgUsu")
+    public String configuracionUsuario() {
+        return "NetViewcfgUsu";
+    }
+
+    //configuracion suscripcion
+    @GetMapping("/app/login/NetView/cfgSusc")
+    public String configuracion() {
+        return "NetViewSusc";
+    }
+
+    //configuracion avatar
+    @GetMapping("/app/login/NetView/avt")
+    public String ConfiguracionAvatar() {
+        return "NetViewAvt";
+    }
 
 }

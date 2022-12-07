@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.dmj.Netview.modelo.Caratula;
 import com.dmj.Netview.modelo.Usuario;
 import com.dmj.Netview.modelo.Video;
 import com.dmj.Netview.repositorios.VideoRepositorio;
@@ -18,6 +21,11 @@ import com.google.firebase.cloud.FirestoreClient;
 
 @Service
 public class VideoServicio implements VideoRepositorio {
+	
+	
+	@Autowired
+	private CaratulaServicio caratulaServicio;
+	
 
 	// todos los videos (cartelera)
 	public List<Video> findAll() {
@@ -119,6 +127,50 @@ public class VideoServicio implements VideoRepositorio {
 		}
 
 		return new Video();
+
+	}
+	
+	//Buscar caratulas cartelera
+	@Override
+	public List<Caratula> buscarMisVideos(String tituloVideo) {
+		
+		List <Caratula> videosBuscados = new ArrayList<>();
+		
+		for(Caratula busq: caratulaServicio.findAll()) {
+			
+			if(tituloVideo.length()>busq.getTituloCaratula().length()) {
+				continue;
+			}
+
+			if(tituloVideo.substring(0, tituloVideo.length()).equalsIgnoreCase((String) busq.getTituloCaratula().substring(0, tituloVideo.length()))) {
+			videosBuscados.add(busq);
+			}
+
+		}
+
+		return videosBuscados;
+
+	}
+	
+	//Buscar caratulas TOP
+	@Override
+	public List<Caratula> buscarMisVideosTop(String tituloVideo) {
+		
+		List <Caratula> videosBuscados = new ArrayList<>();
+		
+		for(Caratula busq: caratulaServicio.findValoradas()) {
+			
+			if(tituloVideo.length()>busq.getTituloCaratula().length()) {
+				continue;
+			}
+
+			if(tituloVideo.substring(0, tituloVideo.length()).equalsIgnoreCase((String) busq.getTituloCaratula().substring(0, tituloVideo.length()))) {
+			videosBuscados.add(busq);
+			}
+
+		}
+
+		return videosBuscados;
 
 	}
 

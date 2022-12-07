@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.dmj.Netview.modelo.Caratula;
 import com.dmj.Netview.modelo.Usuario;
 import com.dmj.Netview.modelo.Video;
@@ -37,6 +39,21 @@ public class MainController {
 		return caratulaServicio.findAll();
 	}
 
+	@GetMapping("/app/login/NetView")
+	public String cartelera(Model model, @RequestParam(name = "q", required = false) String query) {
+
+		if(query != null) {
+			model.addAttribute("cartelera", videoServicio.buscarMisVideos(query));
+			model.addAttribute("usuarioPago", usuario);
+		}else {
+			model.addAttribute("cartelera");
+			model.addAttribute("usuarioPago", usuario);
+		}
+		
+		return "NetView";
+	}
+	
+	//TOP VALORADAS
 	@ModelAttribute("topValoradas")
 	public List<Caratula> caratulasValoradas() {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -45,17 +62,17 @@ public class MainController {
 	}
 
 	@GetMapping("/app/login/NetView/top")
-	public String listTop(Model model) {
-		model.addAttribute("topValoradas");
-		model.addAttribute("usuarioPago", usuario);
-		return "NetView_top";
-	}
+	public String listTop(Model model, @RequestParam(name = "q", required = false) String query) {
 
-	@GetMapping("/app/login/NetView")
-	public String cartelera(Model model) {
-		model.addAttribute("cartelera");
-		model.addAttribute("usuarioPago", usuario);
-		return "NetView";
+		if(query != null) {
+			model.addAttribute("topValoradas", videoServicio.buscarMisVideosTop(query));
+			model.addAttribute("usuarioPago", usuario);
+		}else {
+			model.addAttribute("topValoradas");
+			model.addAttribute("usuarioPago", usuario);
+		}
+		
+		return "NetView_top";
 	}
 
 	// FAVORITOS

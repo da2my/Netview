@@ -30,10 +30,6 @@
 		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 </head>
 
 <body class="hold-transition skin-black sidebar-mini">
@@ -41,7 +37,7 @@
 
 		<!-- Cabecera principal -->
 		<header class="main-header">
-			<a th:href="@{/app/login/NetView}" class="logo">
+			<a href="#" class="logo">
 				<!-- mini logo para barra lateral mini 50x50 pixeles -->
 				<span class="logo-mini"><b>N</b>V</span> <!-- logo para el estado normal y los dispositivos móviles -->
 				<span class="logo-lg"><b>NetView</b></span>
@@ -57,6 +53,9 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<!-- Menú de la cuenta de usuario -->
+						<li>
+							<a th:href="@{/app/login/NetView/pasarela}" class="suscribete">SUSCRIBETE</a>
+						</li>
 						<li class="dropdown user user-menu">
 							<!-- Botón de alternancia del menú --> <a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">
@@ -73,7 +72,7 @@
 
 									<p>
 										Bienvenido - <span sec:authentication="principal.username">
-											Usuario</span><small sec:authentication="principal.Authorities">
+											Usuario</span> <small sec:authentication="principal.Authorities">
 										</small>
 									</p>
 								</li>
@@ -103,115 +102,89 @@
 					</div>
 					<div class="pull-left info">
 						<p>
-							Bienvenid@: <br> <span sec:authentication="principal.username">Usuario</span>
+							Bienvenid@, <span sec:authentication="principal.username">Usuario</span>
 						</p>
 						<!-- Estado -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
 
+				<!-- formulario de búsqueda (opcional) -->
+				<form action="#" method="get" class="sidebar-form">
+					<div class="input-group">
+						<input type="text" name="q" class="form-control" placeholder="Buscar..."> <span
+							class="input-group-btn">
+							<button type="submit" name="search" id="search-btn" class="btn btn-flat">
+								<i class="fa fa-search"></i>
+							</button>
+						</span>
+					</div>
+				</form>
+				<!-- /.formulario de búsqueda -->
+
 				<!-- Menú de la barra lateral -->
 				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header"></li>
+					<li class="header">INICIO</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i> <span>Cartelera</span></a></li>
+					<li class="active"><a th:href="@{/app/login/NetView}"><i class="fa fa-link"></i>
+							<span>Cartelera</span></a></li>
 
-					<!-- th:href="@{/logout}" -->
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/app/login/NetView/favs}"><i
-								class="fa fa-area-chart"></i> <span>Tus
-								favoritos</span></a></li>
+					<li><a th:href="@{/app/login/NetView/favs}"><i class="glyphicon glyphicon-th-large"></i>
+							<span>Tus favoritos</span></a></li>
 
-					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> <span>Tus
-								reproducciones</span> <span class="pull-right-container"> <i
+					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i>
+
+							<span>Tus reproducciones</span> <span class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
+
 						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir
-									viendo</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
+							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir viendo</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Video anterior</a></li>
 						</ul>
 					</li>
 
-					<li class="treeview"><a href="#"><i class="fa fa-cart-arrow-down"></i> <span>Configuración</span>
-							<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
-							</span></a>
-						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Datos personales</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>Cambio de avatar</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>Configuración suscripción</a></li>
-						</ul>
-					</li>
+					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
+							<span>Historial de vídeos</span></a></li>
 
-					<li><a th:href="@{/app/login/NetView/top}"><i class="fa fa-area-chart"></i> <span>Mejor
-								Valoradas</span></a></li>
+					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i>
+							<span>Configuración</span></a></li>
+
+					<li><a th:href="@{/app/login/NetView/top}"><i class="glyphicon glyphicon-th-large"></i>
+							<span>Mejor Valoradas</span></a></li>
+
+					<!-- 					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i> <span>Historial vídeos</span> <span
+								class="pull-right-container">
+							</span> </a>
+					</li>
+					<li class="treeview"><a href="#"><i class="fa fa-area-chart"></i> <span>Configuración</span> <span
+						class="pull-right-container">
+					</span> </a>
+			</li>  -->
+
+
 
 				</ul>
 				<!-- /.Menú de la barra lateral -->
-
 			</section>
 			<!-- /.Barra lateral -->
 		</aside>
 
 		<!-- Envoltura de contenido. Contiene el contenido de la página -->
 		<div class="content-wrapper">
-
+			<!-- /.contenido -->
 			<section class="content">
 				<!-- Small boxes (Stat box) -->
 				<div class="row">
-					<div class="col-sm-2" th:object="${video}">
-
-						<!-- <p th:text="${titleCV}"></p> -->
-
-						<div class="col-item">
-							<div class="row"></div>
-
-							<div class="panel-body">
-								<h1 th:text="${video.tituloVideo}"></h1>
-
-								<div class="img-responsive center-block">
-
-									<video controls width="768" height="432">
-										<source
-											th:src="${#strings.isEmpty(video.urlVideo)} ? 'http://placehold.it/350x260' : ${video.urlVideo}" />
-									</video>
-								</div>
-								<div class="fav-btn">
-									<a th:href="@{/app/login/NetView/add/{addFav}(addFav=${video.tituloVideo})}">
-										<span class="favme glyphicon glyphicon-heart cambiarposi">
-									</a> </span>
-								</div>
-								<br>
-
-								<div th:object="${usuario}">
-									<div class="col-md-offset-2 col-md-8"
-										th:if="${usuario.getRoles().get(0).getNombre() == 'ROLE_ADMIN'}">
-
-										<section class="my-5">
-											<div class="container">
-												<div class="row">
-													<div class="col-md-8 mx-auto">
-														<!-- <h2>Upload File Example</h2> -->
-														<p th:text="${message}" th:if="${message ne null}"
-															class="alert alert-primary"></p>
-														<form method="post" th:action="@{/upload}"
-															enctype="multipart/form-data">
-															<div class="form-group">
-																<input type="file" name="file"
-																	class="form-control-file">
-															</div>
-															<button type="submit" class="btn btn-primary">Subir
-																Video</button>
-														</form>
-													</div>
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<h1 align="center" th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></h1>
 				</div>
+
+				<!-- 
+
+<div id="image_url_1"></div> ESTO ES LO DE LA API
+
+-->
+
 			</section>
 			<!-- /.contenido -->
 		</div>
@@ -238,6 +211,8 @@
 	<script th:src="@{/configMenu/bootstrap.min.js}"></script>
 	<!-- AdminLTE App -->
 	<script th:src="@{/configMenu/adminlte.min.js}"></script>
+	<!-- PRUEBA API -->
+	<script src="../static/css/JS/themoviedb.js" th:src="@{/css/JS/themoviedb.js}"></script>
 
 </body>
 

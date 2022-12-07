@@ -1,14 +1,20 @@
 package com.dmj.Netview.controlador;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dmj.Netview.modelo.Caratula;
 import com.dmj.Netview.modelo.Usuario;
@@ -16,7 +22,8 @@ import com.dmj.Netview.modelo.Video;
 import com.dmj.Netview.repositorios.UsuarioRepositorio;
 import com.dmj.Netview.servicios.CaratulaServicio;
 import com.dmj.Netview.servicios.VideoServicio;
-
+import com.dmj.Netview.utils.DataBucketUtil;
+import com.dmj.Netview.utils.UploadObject;
 
 @Controller
 public class MainController {
@@ -43,18 +50,18 @@ public class MainController {
 	@GetMapping("/app/login/NetView")
 	public String cartelera(Model model, @RequestParam(name = "q", required = false) String query) {
 
-		if(query != null) {
+		if (query != null) {
 			model.addAttribute("cartelera", videoServicio.buscarMisVideos(query));
 			model.addAttribute("usuarioPago", usuario);
-		}else {
+		} else {
 			model.addAttribute("cartelera");
 			model.addAttribute("usuarioPago", usuario);
 		}
-		
+
 		return "NetView";
 	}
-	
-	//TOP VALORADAS
+
+	// TOP VALORADAS
 	@ModelAttribute("topValoradas")
 	public List<Caratula> caratulasValoradas() {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -65,14 +72,14 @@ public class MainController {
 	@GetMapping("/app/login/NetView/top")
 	public String listTop(Model model, @RequestParam(name = "q", required = false) String query) {
 
-		if(query != null) {
+		if (query != null) {
 			model.addAttribute("topValoradas", videoServicio.buscarMisVideosTop(query));
 			model.addAttribute("usuarioPago", usuario);
-		}else {
+		} else {
 			model.addAttribute("topValoradas");
 			model.addAttribute("usuarioPago", usuario);
 		}
-		
+
 		return "NetView_top";
 	}
 
@@ -112,7 +119,7 @@ public class MainController {
 	@GetMapping("/app/login/NetView/cartVIP/{titleCV}")
 	public String carteleraVip(Model model, @PathVariable String titleCV) {
 		model.addAttribute(videoServicio.findById(titleCV));
-		//objeto usuario para gestion de ROLE_ADMIN
+		// objeto usuario para gestion de ROLE_ADMIN
 		model.addAttribute(usuario);
 		return "NetView_sala";
 	}
@@ -129,4 +136,40 @@ public class MainController {
 		usuarioRepositorio.actualizarpago(usuario, success);
 		return "pagoexito";
 	}
+
+	@PostMapping("/upload")
+	public String uploadFile(@RequestParam("file") MultipartFile file,
+			RedirectAttributes attributes) throws IOException {
+
+		// check if file is empty
+		if (file.isEmpty()) {
+			attributes.addFlashAttribute("message", "Por favor, seleccione un archivo a subir.");
+			return "redirect:/NetViewMensaje";
+		}
+
+		File archivo = null;
+
+		DataBucketUtil dataBucketUtil = new DataBucketUtil();
+		archivo = dataBucketUtil.convertFile(file);
+
+		// objectName
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+		// guardar archivo en storage
+		UploadObject uploadObject = new UploadObject();
+		UploadObject.uploadObject("netviewtest2", "netview_test2", fileName, archivo.getAbsolutePath());
+
+		// borrar archivo
+		archivo.delete();
+
+		// return success response
+		attributes.addFlashAttribute("message", "Tu archivo se ha subido correctamente" + fileName + '!');
+		return "redirect:/NetViewMensaje";
+	}
+
+	@GetMapping("/NetViewMensaje")
+	public String paginaMensaje() {
+		return "NetViewMensaje";
+	}
+
 }

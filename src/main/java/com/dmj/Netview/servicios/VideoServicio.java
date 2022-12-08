@@ -260,13 +260,20 @@ public class VideoServicio implements VideoRepositorio {
 		for(int i=0; i<videosRep.size(); i++) {
 			videosSinRep.put(videosRep.get(i).getTituloVideo(), videosRep.get(i));
 		}
-		//videosSinRep.putAll(videosSinRep);
+
 		for(int i=0; i<videosSinRep.size(); i++) {
 			listSinRep.add(videosRep.get(i));
 		}
-		
-		//videosSinRep = videosRep.stream().distinct().collect(Collectors.toList());
+				
 		return listSinRep;
+	}
+
+	@Override
+	public void agregarVideoAdmin(Video video) {
+
+		Firestore database = FirestoreClient.getFirestore();
+		database.collection("Videos").add(video);
+		
 	}
 	
 

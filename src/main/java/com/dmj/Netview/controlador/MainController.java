@@ -168,6 +168,9 @@ public class MainController {
 		UploadObject uploadObject = new UploadObject();
 		UploadObject.uploadObject("netviewtest2", "netview_test2", fileName, archivo.getAbsolutePath());
 
+		//https://storage.googleapis.com/netview_test2/Black%20Adam.mp4
+		videoServicio.agregarVideoAdmin(new Video(fileName.replace(".mp4", ""), "https://storage.googleapis.com/netview_test2/"+fileName));
+
 		// borrar archivo
 		archivo.delete();
 

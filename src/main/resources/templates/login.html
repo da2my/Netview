@@ -60,6 +60,11 @@
 					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Registro con
 					exito
 				</div>
+				
+				<!-- para mostrar mensaje check user -->
+				<div class="alerta" th:if="${param.reg_KO}">
+  				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Fallo de registro, el email ya está registrado
+				</div>
 
 			</form>
 		</div>

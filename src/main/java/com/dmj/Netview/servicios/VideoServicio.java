@@ -253,7 +253,21 @@ public class VideoServicio implements VideoRepositorio {
 
 	}
 	
-	
+	@Override
+	public List<Video> quitarRepetidos(List<Video> videosRep) {
+		HashMap<String, Video> videosSinRep = new HashMap<>();
+		List<Video> listSinRep = new ArrayList<>();
+		for(int i=0; i<videosRep.size(); i++) {
+			videosSinRep.put(videosRep.get(i).getTituloVideo(), videosRep.get(i));
+		}
+		//videosSinRep.putAll(videosSinRep);
+		for(int i=0; i<videosSinRep.size(); i++) {
+			listSinRep.add(videosRep.get(i));
+		}
+		
+		//videosSinRep = videosRep.stream().distinct().collect(Collectors.toList());
+		return listSinRep;
+	}
 	
 
 }

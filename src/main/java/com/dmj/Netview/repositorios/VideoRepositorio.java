@@ -21,5 +21,12 @@ public interface VideoRepositorio {
 	
 	List<Caratula> buscarMisVideosTop(String tituloVideo);
 	
+	void seguirViendo(Video video, Usuario usuario);
+	
+	List<Video> historialVideos(Usuario usuario);
+	
+	void agregarHistorial(Usuario usuario);
+	
+	List<Video> quitarRepetidos(List<Video> videosSinRep);
 	
 }

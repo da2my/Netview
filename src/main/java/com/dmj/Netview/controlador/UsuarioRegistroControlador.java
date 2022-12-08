@@ -22,8 +22,12 @@ public class UsuarioRegistroControlador {
 
 	@PostMapping("/app/register")
 	public String registerUserAccount(@ModelAttribute UsuarioRegistroDTO registrationDTO) throws Exception{
-		useRepository.guardar(registrationDTO);
+		
+		if(useRepository.guardar(registrationDTO) == null) {
+			return "redirect:/app/login?reg_KO";
+		}
+		
 		return "redirect:/app/login?reg_OK";
-
 	}
+	
 }

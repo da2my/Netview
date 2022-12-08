@@ -65,8 +65,21 @@ body {
 }
 
 .titulopeli{
-font-size: 25px;
+font-size: 17px;
 margin-bottom: -11%;
+}
+.suscribete{
+    font-weight: bold;
+}
+
+.btnseguirviendo{
+ 
+font-size:15px;
+}
+
+.spanseguiviendo{
+    color: white;
+    text-align: center;
 }
 
 .content-wrapper,

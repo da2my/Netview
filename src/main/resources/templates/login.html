@@ -8,7 +8,8 @@
 	<title>NetView - Acceso/Registro</title>
 
 	<link rel="stylesheet" href="../static/css/CSS/style.css" th:href="@{/css/CSS/style.css}">
-
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<!--Agrega redes sociales-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -34,6 +35,7 @@
 
 				<input id="login-password" type="password" class="form-control" name="password"
 					placeholder="Contraseña" />
+
 
 				<a href="#">Olvidaste tu contraseña?</a>
 
@@ -73,13 +75,20 @@
 				</div>
 				<span>Registro en Netview</span>
 
-				<input name="nombre" type="text" placeholder="Nombre" th:field="*{nombre}" />
+				<input name="nombre" id="nomb" type="text" placeholder="Nombre" th:field="*{nombre}" />
 				<!-- th:field="*{nombre}" -->
-				<input name="apellido" type="text" placeholder="Apellidos" th:field="*{apellidos}" />
-				<input name="email" type="email" placeholder="Email" th:field="*{email}" />
-				<input name="contrasena" type="password" placeholder="Contraseña" th:field="*{contrasena}" />
+				<input name="apellido" id="ape" type="text" placeholder="Apellidos" th:field="*{apellidos}" />
+				<input name="email" id="mail" type="email" placeholder="Email" th:field="*{email}" />
+				<input name="contrasena" id="contrasena" type="password" placeholder="Contraseña"
+					th:field="*{contrasena}" />
 
-				<button id="btn-signup" type="submit">Registrate</button>
+				<input name="contrasenarep" id="contrasenarep" type="password" placeholder=" Repite contraseña" />
+				<div class="margenbtn" onmouseover="over()">
+					
+						<button id="btn-signup" type="submit" disabled>Registrate</button>
+	
+				</div>
+				
 
 			</form>
 		</div>
@@ -97,6 +106,7 @@
 					<a class="ghost" id="signIn" href="" onclick="$('#signupbox').hide(); $('#loginbox').show()">Iniciar
 						sesion</a>
 
+					<p id="warnings"> </p>
 
 				</div>
 				<div class="overlay-panel overlay-right">

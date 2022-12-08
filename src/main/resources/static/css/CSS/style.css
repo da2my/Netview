@@ -300,3 +300,10 @@ a.ghost {
 	position:relative;
 	top:1px;
 }
+
+.margenbtn{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-left: 5px;
+}

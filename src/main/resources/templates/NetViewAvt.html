@@ -135,7 +135,7 @@
 						<ul class="treeview-menu">
 							<li><a th:href="@{/app/login/NetView/sala}"><i class="fa fa-cart-arrow-down"></i>Seguir
 									viendo</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
+							<li><a th:href="@{/app/login/NetView/hist}"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
 						</ul></li>
 	
 					<li class="treeview active"><a href="#"><i
@@ -144,7 +144,7 @@
 						</span></a>
 						<ul class="treeview-menu">
 							<li><a th:href="@{/app/login/NetView/cfgUsu}"><i class="fa fa-cart-arrow-down"></i>Datos personales</a></li>
-							<li><a th:href="@{/app/login/NetView/avt}"><i class="fa fa-tags"></i>Cambio de avatar</a></li>
+							<li class="active"><a th:href="@{/app/login/NetView/avt}"><i class="fa fa-tags"></i>Cambio de avatar</a></li>
 							<li><a th:href="@{/app/login/NetView/cfgSusc}"><i class="fa fa-tags"></i>Configuración suscripción</a></li>
 						</ul></li>
 
@@ -165,7 +165,6 @@
 				<!-- Small boxes (Stat box) -->
 				<div class="row">
 				
-				
 				<div class="col-md-offset-2 col-md-8">
 				
 					<form method="post" enctype="multipart/form-data" action="#">
@@ -179,39 +178,13 @@
 					<button type="submit" class="btn btn-default">Enviar</button>
 				</form>
 				
-</div>
-				
+				</div>
 
 				</div>
 			</section>
 			<!-- /.contenido -->
 		</div>
 		<!-- /.envoltura de contenido -->
-		
-		
-		
-		
-		
-		
-<!-- 		
-		
-		ESTA ES LA PRUEBA DEL VIDEO STREAMING-SERVICE
-		<div class="content-wrapper">
-
-			<section class="content">
-
-				<video th:src="@{/video/videoCorto}" width="720px" height="480px"
-					controls preload="none">
-				</video>
-
-			</section>
-		</div>
-		
- -->		
-		
-		
-		
-		
 
 		<!-- Pie de página principal -->
 		<footer class="main-footer">

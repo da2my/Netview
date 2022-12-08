@@ -131,9 +131,9 @@
 								class="fa fa-angle-left pull-right"></i>
 						</span> </a>
 						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-cart-arrow-down"></i>Seguir
+							<li><a th:href="@{/app/login/NetView/sala}"><i class="fa fa-cart-arrow-down"></i>Seguir
 									viendo</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
+							<li><a th:href="@{/app/login/NetView/hist}"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
 						</ul></li>
 
 					<li class="treeview"><a href="#"><i
@@ -149,6 +149,13 @@
 					<li><a th:href="@{/app/login/NetView/top}"><i
 							class="fa fa-area-chart"></i> <span>Mejor
 								Valoradas</span></a></li>
+								
+								
+								
+					<!-- Crear css MARCOS -->			
+					<li class="treeview" id="seguir" style="display:none; font-size:20px;"><a id="seguir"><span style="color: white; aling:center;">Seguir viendo</span></a></li>
+								
+						
 
 				</ul>
 				<!-- /.Menú de la barra lateral -->
@@ -165,8 +172,6 @@
 				<div class="row">
 
 					<!-- ./col -->
-
-
 
 					<!--añadir video-->
 

@@ -30,7 +30,7 @@
 		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 
-		<!-- Latest compiled and minified CSS -->
+	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -59,9 +59,6 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<!-- Menú de la cuenta de usuario -->
-						 <li>
-							<a th:href="@{/app/login/NetView/pasarela}"  class="suscribete">SUSCRIBETE</a>
-						</li> 
 						<li class="dropdown user user-menu">
 							<!-- Botón de alternancia del menú --> <a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">
@@ -78,7 +75,7 @@
 
 									<p>
 										Bienvenido - <span sec:authentication="principal.username">
-											Usuario</span> <small sec:authentication="principal.Authorities">
+											Usuario</span><small sec:authentication="principal.Authorities">
 										</small>
 									</p>
 								</li>
@@ -98,6 +95,7 @@
 		<!-- Columna lateral izquierda. Contiene el logotipo y la barra lateral -->
 		<aside class="main-sidebar">
 
+
 			<section class="sidebar">
 
 				<!-- Panel de usuario de la barra lateral (opcional) -->
@@ -114,7 +112,7 @@
 					</div>
 				</div>
 
-			<!-- Menú de la barra lateral -->
+				<!-- Menú de la barra lateral -->
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header"></li>
 					<!-- Optionally, you can add icons to the links -->
@@ -127,7 +125,7 @@
 							class="fa fa-area-chart"></i> <span>Tus
 								favoritos</span></a></li>
 
-					<li class="treeview"><a href="#"><i
+					<li class="treeview active"><a href="#"><i
 							class="fa fa-cart-arrow-down"></i> <span>Tus
 								reproducciones</span> <span class="pull-right-container"> <i
 								class="fa fa-angle-left pull-right"></i>
@@ -135,17 +133,17 @@
 						<ul class="treeview-menu">
 							<li><a th:href="@{/app/login/NetView/sala}"><i class="fa fa-cart-arrow-down"></i>Seguir
 									viendo</a></li>
-							<li><a th:href="@{/app/login/NetView/hist}"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
+							<li class="active"><a th:href="@{/app/login/NetView/hist}"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
 						</ul></li>
-	
-					<li class="treeview active"><a href="#"><i
+
+					<li class="treeview"><a href="#"><i
 							class="fa fa-cart-arrow-down"></i> <span>Configuración</span> <span class="pull-right-container"> <i
 								class="fa fa-angle-left pull-right"></i>
 						</span></a>
 						<ul class="treeview-menu">
 							<li><a th:href="@{/app/login/NetView/cfgUsu}"><i class="fa fa-cart-arrow-down"></i>Datos personales</a></li>
 							<li><a th:href="@{/app/login/NetView/avt}"><i class="fa fa-tags"></i>Cambio de avatar</a></li>
-							<li class="active"><a th:href="@{/app/login/NetView/cfgSusc}"><i class="fa fa-tags"></i>Configuración suscripción</a></li>
+							<li><a th:href="@{/app/login/NetView/cfgSusc}"><i class="fa fa-tags"></i>Configuración suscripción</a></li>
 						</ul></li>
 
 					<li><a th:href="@{/app/login/NetView/top}"><i
@@ -154,53 +152,46 @@
 
 				</ul>
 				<!-- /.Menú de la barra lateral -->
+				
 			</section>
 			<!-- /.Barra lateral -->
 		</aside>
 
 		<!-- Envoltura de contenido. Contiene el contenido de la página -->
 		<div class="content-wrapper">
-			<!-- /.contenido -->
+
 			<section class="content">
 				<!-- Small boxes (Stat box) -->
 				<div class="row">
-				
-				<div class="col-md-offset-2 col-md-8">
 
-					<a th:href="@{/app/login/NetView/cfgSusc/cancel}" class="btn btn-default">Cancelar Suscripción</a>
+					<!-- ./col -->
 
-				</div>
+					<!--añadir video-->
+
+					<div class="col-sm-3" th:each="video : ${historialVideos}">
+
+						<div class="col-item">
 		
+							<div class="panel-body">
+										
+								<p class="titulopeli" th:text="${video.tituloVideo}"></p>
+
+								<video controls width="350" height="260" class="controlarespacio">
+									<source
+										th:src="${#strings.isEmpty(video.urlVideo)} ? 'http://placehold.it/350x260' : ${video.urlVideo}" />
+								</video>
+				
+							</div>
+
+						</div>
+
+					</div>
+
 				</div>
 			</section>
 			<!-- /.contenido -->
 		</div>
 		<!-- /.envoltura de contenido -->
-		
-		
-		
-		
-		
-		
-<!-- 		
-		
-		ESTA ES LA PRUEBA DEL VIDEO STREAMING-SERVICE
-		<div class="content-wrapper">
-
-			<section class="content">
-
-				<video th:src="@{/video/videoCorto}" width="720px" height="480px"
-					controls preload="none">
-				</video>
-
-			</section>
-		</div>
-		
- -->		
-		
-		
-		
-		
 
 		<!-- Pie de página principal -->
 		<footer class="main-footer">

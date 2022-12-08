@@ -40,7 +40,14 @@ function over() {
         parrafo.innerHTML = warnings
 
     }
+    else {
+        warnings = ' '
+        parrafo.innerHTML = warnings
+    }
 }
+
+
+
 
 function desa() {
 

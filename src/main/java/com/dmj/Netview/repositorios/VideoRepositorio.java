@@ -30,5 +30,7 @@ public interface VideoRepositorio {
 	List<Video> quitarRepetidos(List<Video> videosSinRep);
 
 	void agregarVideoAdmin(Video video);
+
+	void eliminarVideoAdminBbdd(String videoDel);
 	
 }

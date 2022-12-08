@@ -23,6 +23,7 @@ import com.dmj.Netview.repositorios.UsuarioRepositorio;
 import com.dmj.Netview.servicios.CaratulaServicio;
 import com.dmj.Netview.servicios.VideoServicio;
 import com.dmj.Netview.utils.DataBucketUtil;
+import com.dmj.Netview.utils.DeleteObject;
 import com.dmj.Netview.utils.UploadObject;
 
 @Controller
@@ -178,6 +179,22 @@ public class MainController {
 		attributes.addFlashAttribute("message", "Tu archivo se ha subido correctamente" + fileName + '!');
 		return "redirect:/NetViewMensaje";
 	}
+
+
+	@GetMapping("/delete/{buckDel}")
+	public String borrarVideoStorage(RedirectAttributes attributes, @PathVariable String buckDel){
+		
+		DeleteObject deleteObject = new DeleteObject();
+		DeleteObject.deleteObject("netviewtest2", "netview_test2", buckDel + ".mp4");
+
+		videoServicio.eliminarVideoAdminBbdd(buckDel);
+		
+		attributes.addFlashAttribute("message", "Tu archivo se ha borrado corectamente");
+
+		return "redirect:/NetViewMensaje";
+	}
+	
+
 
 	@GetMapping("/NetViewMensaje")
 	public String paginaMensaje() {

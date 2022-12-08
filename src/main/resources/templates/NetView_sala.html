@@ -128,7 +128,8 @@
 						<ul class="treeview-menu">
 							<li><a th:href="@{/app/login/NetView/sala}"><i class="fa fa-cart-arrow-down"></i>Seguir
 									viendo</a></li>
-							<li><a th:href="@{/app/login/NetView/hist}"><i class="fa fa-tags"></i>Historial de vídeos</a></li>
+							<li><a th:href="@{/app/login/NetView/hist}"><i class="fa fa-tags"></i>Historial de
+									vídeos</a></li>
 						</ul>
 					</li>
 
@@ -136,9 +137,12 @@
 							<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
 							</span></a>
 						<ul class="treeview-menu">
-							<li><a th:href="@{/app/login/NetView/cfgUsu}"><i class="fa fa-cart-arrow-down"></i>Datos personales</a></li>
-							<li><a th:href="@{/app/login/NetView/avt}"><i class="fa fa-tags"></i>Cambio de avatar</a></li>
-							<li><a th:href="@{/app/login/NetView/cfgSusc}"><i class="fa fa-tags"></i>Configuración suscripción</a></li>
+							<li><a th:href="@{/app/login/NetView/cfgUsu}"><i class="fa fa-cart-arrow-down"></i>Datos
+									personales</a></li>
+							<li><a th:href="@{/app/login/NetView/avt}"><i class="fa fa-tags"></i>Cambio de avatar</a>
+							</li>
+							<li><a th:href="@{/app/login/NetView/cfgSusc}"><i class="fa fa-tags"></i>Configuración
+									suscripción</a></li>
 						</ul>
 					</li>
 
@@ -197,6 +201,14 @@
 															<button type="submit" class="btn btn-primary">Subir
 																Video</button>
 														</form>
+
+														<br>
+
+														<a th:href="@{/delete/{buckDel}(buckDel=${video.tituloVideo})}"
+															class="btn btn-primary">Borrar Video</a>
+
+														<!-- <p th:text="${video.tituloVideo}"></p> -->
+
 													</div>
 												</div>
 											</div>

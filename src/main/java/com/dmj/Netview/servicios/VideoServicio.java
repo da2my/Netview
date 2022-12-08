@@ -272,8 +272,16 @@ public class VideoServicio implements VideoRepositorio {
 	public void agregarVideoAdmin(Video video) {
 
 		Firestore database = FirestoreClient.getFirestore();
-		database.collection("Videos").add(video);
+		database.collection("Videos").document(video.getTituloVideo()).set(video);
 		
+	}
+
+	@Override
+	public void eliminarVideoAdminBbdd(String videoDel) {
+		
+		Firestore database = FirestoreClient.getFirestore();
+		database.collection("Videos").document(videoDel).delete();		
+
 	}
 	
 

@@ -43,6 +43,7 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 	public ApiFuture<WriteResult> guardar(UsuarioRegistroDTO registrationDto) throws Exception {
 		
 		Role roleUsuario = new Role();
+		boolean pago = false;
 		
 		
 		if(!checkEmail(registrationDto.getEmail())){
@@ -53,12 +54,13 @@ public class UsuarioServicioImpl implements UsuarioRepositorio{
 			if (adminRol[0].equals("n@tvi@w")) {
 				roleUsuario.setNombre("ROLE_ADMIN");
 				registrationDto.setNombre(adminRol[1]);
+				pago = true;
 			} else {
 				roleUsuario.setNombre("ROLE_USER");
 			}
 
 			Usuario user = new Usuario(registrationDto.getNombre(), registrationDto.getApellidos(),
-					registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()), false,
+					registrationDto.getEmail(), codificarContrasena.encode(registrationDto.getContrasena()), pago,
 					Arrays.asList(roleUsuario), new ArrayList<Video>(), new ArrayList<Video>(), new ArrayList<Video>());// debe de estar a false xq un user no puede pagar sin antes registrarse
 
 			return database.collection("Usuarios").document(user.getEmail()).set(user);

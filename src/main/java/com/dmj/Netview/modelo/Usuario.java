@@ -123,5 +123,10 @@ public class Usuario {
 	public void setHistorialVideos(List<Video> historialVideos) {
 		this.historialVideos = historialVideos;
 	}
+	
+	//agregar a historial de videos
+	public void addHistorialVideos(Video v) {
+		this.historialVideos.add(v);
+	}
 
 }

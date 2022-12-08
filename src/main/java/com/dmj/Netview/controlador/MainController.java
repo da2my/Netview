@@ -121,6 +121,15 @@ public class MainController {
 		model.addAttribute(videoServicio.findById(titleCV));
 		// objeto usuario para gestion de ROLE_ADMIN
 		model.addAttribute(usuario);
+		
+		if(videoServicio.findById(titleCV).getTituloVideo() != null) {
+			//esto es para seguir viendo
+			videoServicio.seguirViendo(videoServicio.findById(titleCV), usuario);
+			//esto es para agregar al historial
+			usuario.addHistorialVideos(videoServicio.findById(titleCV));
+			videoServicio.agregarHistorial(usuario);
+		}
+		
 		return "NetView_sala";
 	}
 
@@ -195,4 +204,36 @@ public class MainController {
 		usuarioRepositorio.actualizarpago(usuario, false);
 		return "redirect:https://billing.stripe.com/p/login/test_8wM3f91T90hg7kI144";
     }
+    
+	// SEGUIR VIENDO GUARDAR
+	@GetMapping("/app/login/NetView/favs/{ultVid}")
+	public String guardarSeguirViendo(@PathVariable String ultVid) {
+		videoServicio.findById(ultVid);
+		videoServicio.seguirViendo(videoServicio.findById(ultVid), usuario);
+		
+		//esto es para agregar al historial
+		usuario.addHistorialVideos(videoServicio.findById(ultVid));
+		videoServicio.agregarHistorial(usuario);
+		
+		return "redirect:/app/login/NetView/favs";
+	}
+	
+	//SEGUIR VIENDO REPRODUCIR
+	@GetMapping("/app/login/NetView/sala")
+	public String reproducirSeguirViendo(Model model) {
+		model.addAttribute(usuario.getSeguirViendo().get(0));
+		return "NetView_sala";
+	}
+
+	// HISTORIAL VIDEOS
+	@ModelAttribute("historialVideos")
+	public List<Video> historialVideo() {
+		return videoServicio.historialVideos(usuario);
+	}
+	
+	@GetMapping("/app/login/NetView/hist")
+	public String listHistorialVideo(Model model) {
+		model.addAttribute("historialVideos", videoServicio.historialVideos(usuario));
+		return "NetViewHist";
+	}
 }

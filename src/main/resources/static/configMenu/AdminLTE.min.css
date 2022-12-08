@@ -72,6 +72,8 @@ margin-bottom: -11%;
     font-weight: bold;
 }
 
+
+
 .btnseguirviendo{
  
 font-size:15px;
@@ -115,6 +117,7 @@ font-size:15px;
     .sidebar-collapse .main-footer {
         margin-left: 0
     }
+    
 }
 
 @media (max-width:767px) {
@@ -125,6 +128,19 @@ font-size:15px;
         -ms-transform: translate(230px, 0);
         -o-transform: translate(230px, 0);
         transform: translate(230px, 0)
+    }
+    video{
+        width:450px;
+        height: 300px;
+
+    }
+}
+@media (max-width:420px) {
+   
+    video{
+        width:300px;
+        height: 200px;
+
     }
 }
 

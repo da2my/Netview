@@ -28,5 +28,7 @@ public interface VideoRepositorio {
 	void agregarHistorial(Usuario usuario);
 	
 	List<Video> quitarRepetidos(List<Video> videosSinRep);
+
+	void agregarVideoAdmin(Video video);
 	
 }

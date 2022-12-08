@@ -221,9 +221,15 @@ public class MainController {
 	//SEGUIR VIENDO REPRODUCIR
 	@GetMapping("/app/login/NetView/sala")
 	public String reproducirSeguirViendo(Model model) {
-		model.addAttribute(usuario.getSeguirViendo().get(0));
+		
+		if(!usuario.getSeguirViendo().isEmpty()) {
+			model.addAttribute(usuario.getSeguirViendo().get(0));
+		}else {
+			model.addAttribute(new Video());
+		}
 		// objeto usuario para gestion de ROLE_ADMIN
 		model.addAttribute(usuario);
+		
 		return "NetView_sala";
 	}
 

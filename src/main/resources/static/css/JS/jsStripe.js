@@ -26,21 +26,6 @@ $(document).ready(function () {
     }
   }
 
-
-  $("#order-btn").click(function (event) {
-    var checkoutMode = $(event.target).data("checkoutMode");
-    var priceId = $(event.target).data("priceId");
-    var items = [{ price: priceId, quantity: 1 }];
-    stripe
-      .redirectToCheckout({
-        mode: checkoutMode,
-        lineItems: items,
-        successUrl: DOMAIN + "pagoexito/true",
-        cancelUrl: DOMAIN + "main.html?success=false",
-      })
-      .then(handleResult);
-  }
-  );
   $("#order-btn1").click(function (event) {
     var checkoutMode = $(event.target).data("checkoutMode");
     var priceId = $(event.target).data("priceId");

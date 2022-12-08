@@ -222,6 +222,8 @@ public class MainController {
 	@GetMapping("/app/login/NetView/sala")
 	public String reproducirSeguirViendo(Model model) {
 		model.addAttribute(usuario.getSeguirViendo().get(0));
+		// objeto usuario para gestion de ROLE_ADMIN
+		model.addAttribute(usuario);
 		return "NetView_sala";
 	}
 
